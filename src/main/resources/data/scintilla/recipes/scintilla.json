@@ -1,0 +1,27 @@
+{
+  "type": "scintilla:color",
+  "category": "misc",
+  "pattern": [
+    "UUU",
+    "OXO",
+    "^^^"
+  ],
+  "key": {
+    "U": {
+      "item": "minecraft:powder_snow_bucket"
+    },
+    "O": {
+      "item": "minecraft:snowball"
+    },
+    "^": {
+      "item": "minecraft:sugar"
+    },
+    "X": {
+      "item": "scintilla:shatterglass"
+    }
+  },
+  "result": {
+    "item": "scintilla:scintilla"
+  },
+  "color_slot": 4
+}

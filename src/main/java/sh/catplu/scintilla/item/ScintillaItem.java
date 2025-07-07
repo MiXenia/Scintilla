@@ -12,8 +12,6 @@ public class ScintillaItem extends Item implements DyeableLeatherItem {
         super(pProperties);
     }
 
-
-
     @Override
     public int getColor(ItemStack pStack) {
         CompoundTag $$1 = pStack.getTagElement("display");

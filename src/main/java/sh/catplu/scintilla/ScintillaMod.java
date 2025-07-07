@@ -18,6 +18,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
+import sh.catplu.scintilla.data.ModRecipes;
 import sh.catplu.scintilla.item.ModCreativeModeTabs;
 import sh.catplu.scintilla.item.ModItems;
 
@@ -47,6 +48,7 @@ public class ScintillaMod
 
         ModCreativeModeTabs.register(modEventBus);
         ModItems.register(modEventBus);
+        ModRecipes.register(modEventBus);
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
 
@@ -59,6 +61,7 @@ public class ScintillaMod
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
         modEventBus.addListener(this::registerItemColors);
+
         // Register our mod's ForgeConfigSpec so that Forge can create and load the config file for us
         //context.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
@@ -95,6 +98,7 @@ public class ScintillaMod
     public void registerItemColors(RegisterColorHandlersEvent.@NotNull Item event)
     {
         event.register((ItemColor) (itemStack, i) -> i > 0 ? -1 : ((DyeableLeatherItem) itemStack.getItem()).getColor(itemStack), ModItems.SCINTILLA.get());
+        event.register((ItemColor) (itemStack, i) -> i > 0 ? -1 : ((DyeableLeatherItem) itemStack.getItem()).getColor(itemStack), ModItems.SHATTERGLASS.get());
     }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent

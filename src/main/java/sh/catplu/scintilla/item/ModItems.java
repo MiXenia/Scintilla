@@ -14,7 +14,7 @@ public class ModItems {
             DeferredRegister.create(ForgeRegistries.ITEMS, ScintillaMod.MOD_ID);
 
     public static final RegistryObject<Item> SHATTERGLASS = ITEMS.register("shatterglass",
-            () -> new Item(new Item.Properties()));
+            () -> new ShatterglassItem(new Item.Properties()));
     public static final RegistryObject<Item> SCINTILLA = ITEMS.register("scintilla",
             () -> new ScintillaItem(new Item.Properties().stacksTo(1).durability(9)
                     .food(new FoodProperties.Builder()

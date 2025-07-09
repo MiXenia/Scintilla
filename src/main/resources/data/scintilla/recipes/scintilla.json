@@ -21,7 +21,18 @@
     }
   },
   "result": {
-    "item": "scintilla:scintilla"
+    "item": "scintilla:scintilla",
+    "nbt": {
+      "md": 9,
+      "hv": 2,
+      "sv": 0.4,
+      "Display": {
+        "bs": "vanilla",
+        "bm": "glass",
+        "dl": "sugar",
+        "dr": "snow"
+      }
+    }
   },
   "color_slot": 4
 }

@@ -1,4 +1,4 @@
-package sh.catplu.scintilla.data;
+package sh.catplu.scintilla.recipes;
 
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.eventbus.api.IEventBus;

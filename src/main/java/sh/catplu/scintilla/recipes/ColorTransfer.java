@@ -1,4 +1,4 @@
-package sh.catplu.scintilla.data;
+package sh.catplu.scintilla.recipes;
 
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
@@ -12,15 +12,16 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.inventory.CraftingContainer;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CraftingBookCategory;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.ShapedRecipe;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.Nullable;
 import sh.catplu.scintilla.ScintillaMod;
+import sh.catplu.scintilla.utils.NBTCopyUtil;
 
 import java.util.Map;
 import java.util.Set;
@@ -95,10 +96,9 @@ public class ColorTransfer extends ShapedRecipe {
 
     @Override
     public ItemStack assemble(CraftingContainer pContainer, RegistryAccess pRegistryAccess) {
-        int color = pContainer.getItem(this.colorSourceSlot).getTag().getCompound("display").getInt("color");
-        ItemStack output = this.pResult.copy();
-        output.getOrCreateTagElement("display").putInt("color", color);
-        //this.result = result;
+        ItemStack donor = pContainer.getItem(this.colorSourceSlot);
+        ItemStack source = this.pResult.copy();
+        ItemStack output = NBTCopyUtil.mergeNbtPreservingExisting(donor,source);
         return output;
     }
 

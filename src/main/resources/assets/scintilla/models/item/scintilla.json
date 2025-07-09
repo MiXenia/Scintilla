@@ -1,7 +1,9 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "scintilla:item/shatterglass",
-    "layer1": "scintilla:item/base"
+    "layer0": "scintilla:item/vanilla_shatterglass",
+    "layer1": "scintilla:item/vanilla_sugar",
+    "layer2": "scintilla:item/vanilla_snow",
+    "layer3": "scintilla:item/vanilla_glass"
   }
 }

@@ -15,10 +15,10 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.DeferredRegister;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
-import sh.catplu.scintilla.data.ModRecipes;
+import sh.catplu.scintilla.loot.ModLoot;
+import sh.catplu.scintilla.recipes.ModRecipes;
 import sh.catplu.scintilla.item.ModCreativeModeTabs;
 import sh.catplu.scintilla.item.ModItems;
 
@@ -49,6 +49,7 @@ public class ScintillaMod
         ModCreativeModeTabs.register(modEventBus);
         ModItems.register(modEventBus);
         ModRecipes.register(modEventBus);
+        ModLoot.register(modEventBus);
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
 

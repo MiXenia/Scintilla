@@ -1,0 +1,19 @@
+{
+  "type": "scintilla:smashing",
+  "conditions":[
+    {
+      "condition": "minecraft:block_state_property",
+      "block": "minecraft:light_gray_stained_glass"
+    },
+    {
+      "condition": "minecraft:match_tool",
+      "predicate": {
+        "items": [
+          "minecraft:brick"
+        ]
+      }
+    }
+  ],
+  "prop1": "scintilla:shatterglass",
+  "prop2": 9934743
+}

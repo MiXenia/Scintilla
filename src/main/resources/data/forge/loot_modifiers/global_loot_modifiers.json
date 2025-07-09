@@ -1,0 +1,26 @@
+{
+  "replace": false,
+  "entries": [
+    "scintilla:blacksg",
+    "scintilla:bluesg",
+    "scintilla:brownsg",
+    "scintilla:cyansg",
+    "scintilla:graysg",
+    "scintilla:greensg",
+    "scintilla:lightbluesg",
+    "scintilla:lightgraysg",
+    "scintilla:limesg",
+    "scintilla:magentasg",
+    "scintilla:orangesg",
+    "scintilla:pinksg",
+    "scintilla:purplesg",
+    "scintilla:redsg",
+    "scintilla:whitesg",
+    "scintilla:yellowsg",
+
+    "scintilla:mini_pinksg",
+    "scintilla:gaia_blacksg",
+    "scintilla:gaia_tg",
+    "scintilla:azure_bluesg"
+  ]
+}

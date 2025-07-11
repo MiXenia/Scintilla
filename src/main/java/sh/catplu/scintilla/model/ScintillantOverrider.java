@@ -1,194 +1,85 @@
 package sh.catplu.scintilla.model;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.ItemOverrides;
-import net.minecraft.client.renderer.block.model.ItemTransforms;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.BakedModel;
-import net.minecraft.client.resources.model.SimpleBakedModel;
-import net.minecraft.core.Direction;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.RandomSource;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.model.data.ModelData;
-import net.minecraftforge.fml.common.Mod;
-import org.jetbrains.annotations.Nullable;
-import sh.catplu.scintilla.utils.ClientUtils;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.entity.LivingEntity;
 
-import java.util.ArrayList;
-import java.util.EnumMap;
-import java.util.List;
+import javax.annotation.Nullable;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.Map;
+import com.google.common.collect.ImmutableList;
+import net.minecraft.client.resources.model.Material;
+import net.minecraft.client.resources.model.ModelBaker;
+import net.minecraft.client.resources.model.ModelState;
+import net.minecraftforge.client.model.geometry.IGeometryBakingContext;
 
-@Mod.EventBusSubscriber(modid = "scintilla", bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT) // IMPORTANT: value = Dist.CLIENT
+@SuppressWarnings("removal")
 public class ScintillantOverrider extends ItemOverrides {
 
-    public ScintillantOverrider() {
-    }
+    // Cache: key is a string of your four texture names
+    private static final Map<String, BakedModel> MODEL_CACHE = new ConcurrentHashMap<>();
 
-    @SuppressWarnings("removal")
     @Override
-    public @Nullable BakedModel resolve(BakedModel pModel, ItemStack pStack, @Nullable ClientLevel pLevel, @Nullable LivingEntity pEntity, int pSeed) {
-        CompoundTag tag = pStack.getTag();
-        String bottleShape;
-        String bottleMat;
-        String dustLeftMat;
-        String dustRightMat;
-        if (tag != null) {
-            CompoundTag display = tag.getCompound("Display");
-
-            bottleShape  = (display.contains("bs")) ? display.getString("bs") : "vanilla";
-            bottleMat    = (display.contains("bm")) ? display.getString("bm") : "glass";
-            dustLeftMat  = (display.contains("dl")) ? display.getString("dl") : "sugar";
-            dustRightMat = (display.contains("dr")) ? display.getString("dr") : "snow";
-        } else {
-            bottleShape = "vanilla";
-            bottleMat = "glass";
-            dustLeftMat = "sugar";
-            dustRightMat = "snow";
+    public BakedModel resolve(BakedModel pModel, ItemStack pStack, @Nullable ClientLevel pLevel, @Nullable LivingEntity pEntity, int pSeed) {
+        String bs = "vanilla";
+        String bm = "glass";
+        String dl = "sugar";
+        String dr = "snow";
+        if (pStack.hasTag()) {
+            CompoundTag tag = pStack.getTagElement("display");
+            if (tag == null) tag = pStack.getTag();
+            bs = tag != null && tag.contains("bs") ? tag.getString("bs") : "vanilla";
+            bm = tag != null && tag.contains("bm") ? tag.getString("bm") : "glass";
+            dl = tag != null && tag.contains("dl") ? tag.getString("dl") : "sugar";
+            dr = tag != null && tag.contains("dr") ? tag.getString("dr") : "snow";
         }
 
-        ResourceLocation bottleTex       = new ResourceLocation("scintilla","item/" + bottleShape + "_" + bottleMat);
-        ResourceLocation dustLeftTex     = new ResourceLocation("scintilla","item/" + bottleShape + "_" + dustLeftMat);
-        ResourceLocation dustRightTex    = new ResourceLocation("scintilla","item/" + bottleShape + "_" + dustRightMat);
-        ResourceLocation shatterglassTex = new ResourceLocation("scintilla","item/" + bottleShape + "_shatterglass");
+        // Compose the texture paths
+        ResourceLocation layer0 = new ResourceLocation("scintilla","item/s_" + bs + "shatterglass");
+        ResourceLocation layer1 = new ResourceLocation("scintilla","item/l_" + bs + dl);
+        ResourceLocation layer2 = new ResourceLocation("scintilla","item/r_" + bs + dr);
+        ResourceLocation layer3 = new ResourceLocation("scintilla","item/b_" + bs + "_" + bm);
 
-        TextureAtlasSprite bottleSprite       = ClientUtils.getSprite(bottleTex);
-        TextureAtlasSprite dustLeftSprite     = ClientUtils.getSprite(dustLeftTex);
-        TextureAtlasSprite dustRightSprite    = ClientUtils.getSprite(dustRightTex);
-        TextureAtlasSprite shatterglassSprite = ClientUtils.getSprite(shatterglassTex);
+        // Key for caching
+        String cacheKey = "c_" + bs + "_" + bm + "_" + dl + "_" + dr;
 
-        // Handling Non-Culled Quads
-        List<RenderType> renderTypes = pModel.getRenderTypes(pStack, false); // Get render types used by the model for this item stack
-        List<BakedQuad> dynamicGeneralQuads = new ArrayList<>();
-        Map<Direction, List<BakedQuad>> dynamicCulledFaces = new EnumMap<>(Direction.class);
+        // Check cache
+        BakedModel cached = MODEL_CACHE.get(cacheKey);
+        if (cached != null) return cached;
 
-
-            List<BakedQuad> baseGeneralQuads = pModel.getQuads(null, null, RandomSource.create(pSeed), ModelData.EMPTY, null);
-
-            if (baseGeneralQuads != null) {
-                System.out.println("Processing " + baseGeneralQuads.size() + " general quads."); // Debug
-                for (BakedQuad baseQuad : baseGeneralQuads) {
-                    TextureAtlasSprite newSprite = baseQuad.getSprite();
-
-                    int colorIndex = baseQuad.getTintIndex();
-
-                    if (colorIndex == 0) {
-                        newSprite = shatterglassSprite;
-                    } else if (colorIndex == 1) {
-                        newSprite = dustRightSprite;
-                    } else if (colorIndex == 2) {
-                        newSprite = dustLeftSprite;
-                    } else if (colorIndex == 3) {
-                        newSprite = bottleSprite;
-                    }
-
-                    if (newSprite == null) {
-                        // This should theoretically not happen if ClientSpriteHelper.getSprite() always returns non-null.
-                        // But as a final fallback, use the missing sprite if it somehow slipped through.
-                        newSprite = ClientUtils.getSprite(new ResourceLocation("missingno"));
-                    }
-
-                    System.out.println("--- Debugging General Quad Vertex Data (ColorIndex: " + baseQuad.getTintIndex() + ", Face: " + baseQuad.getDirection() + ") ---");
-                    int[] vertexData = baseQuad.getVertices();
-                    for (int i = 0; i < vertexData.length; i++) {
-                        //System.out.println("  Vertex Data [" + i + "]: " + vertexData[i] + " (float: " + Float.intBitsToFloat(vertexData[i]) + ")");
-                    }
-                    System.out.println("  Sprite Name: " + newSprite.contents().name());
-                    System.out.println("-----------------------------------------------------------------");
-                    BakedQuad dynamicQuad = new BakedQuad(baseQuad.getVertices().clone(), baseQuad.getTintIndex(), baseQuad.getDirection(), newSprite, baseQuad.isShade());
-                    dynamicGeneralQuads.add(dynamicQuad);
-                }
-            }
-
-            // Handling Culled Quads
-
-            for (Direction direction : Direction.values()) {
-                List<BakedQuad> baseCulledQuads = pModel.getQuads(null, direction, RandomSource.create(pSeed), ModelData.EMPTY, null);
-                List<BakedQuad> directionSpecificQuads = new ArrayList<>();
-
-                if (baseCulledQuads != null) {
-                    System.out.println("Processing " + baseCulledQuads.size() + " culled quads for direction " + direction + "."); // Debug
-                    for (BakedQuad baseQuad : baseCulledQuads) {
-                        TextureAtlasSprite newSprite = baseQuad.getSprite();
-
-                        int colorIndex = baseQuad.getTintIndex();
-
-                        if (colorIndex == 0) {
-                            newSprite = shatterglassSprite;
-                        } else if (colorIndex == 1) {
-                            newSprite = dustRightSprite;
-                        } else if (colorIndex == 2) {
-                            newSprite = dustLeftSprite;
-                        } else if (colorIndex == 3) {
-                            newSprite = bottleSprite;
-                        }
-
-                        if (newSprite == null) {
-                            // This should theoretically not happen if ClientSpriteHelper.getSprite() always returns non-null.
-                            // But as a final fallback, use the missing sprite if it somehow slipped through.
-                            newSprite = ClientUtils.getSprite(new ResourceLocation("missingno"));
-                        }
-
-                        System.out.println("--- Debugging Culled Quad Vertex Data (Direction: " + direction + ", ColorIndex: " + baseQuad.getTintIndex() + ", Face: " + baseQuad.getDirection() + ") ---");
-                        int[] vertexData = baseQuad.getVertices();
-                        for (int i = 0; i < vertexData.length; i++) {
-                            //System.out.println("  Vertex Data [" + i + "]: " + vertexData[i] + " (float: " + Float.intBitsToFloat(vertexData[i]) + ")");
-                        }
-                        System.out.println("  Sprite Name: " + newSprite.contents().name());
-                        System.out.println("-----------------------------------------------------------------");
-                        BakedQuad dynamicQuad = new BakedQuad(baseQuad.getVertices().clone(), baseQuad.getTintIndex(), baseQuad.getDirection(), newSprite, baseQuad.isShade());
-                        directionSpecificQuads.add(dynamicQuad);
-                    }
-                }
-                if (!directionSpecificQuads.isEmpty()) { // Only put directions with quads
-                    dynamicCulledFaces.put(direction, directionSpecificQuads);
-                }
-            }
-
-        // --- Get safe values for constructor parameters ---
-        TextureAtlasSprite particleIcon = pModel.getParticleIcon();
-        if (particleIcon == null) {
-            particleIcon = ClientUtils.getSprite(new ResourceLocation("missingno")); // Fallback to missing sprite
-            System.err.println("WARNING: Base model returned null particle icon. Using missingno."); // Debug
-        }
-
-        ItemTransforms transforms = pModel.getTransforms();
-        if (transforms == null) {
-            transforms = ItemTransforms.NO_TRANSFORMS; // Fallback to no transformations
-            System.err.println("WARNING: Base model returned null transformations. Using NO_TRANSFORMS."); // Debug
-        }
-
-        System.out.println("DEBUG: Constructing SimpleBakedModel with values:");
-        System.out.println("  dynamicGeneralQuads size: " + dynamicGeneralQuads.size());
-        System.out.println("  dynamicCulledFaces size: " + dynamicCulledFaces.size());
-        System.out.println("  useAmbientOcclusion: " + pModel.useAmbientOcclusion());
-        System.out.println("  isGui3d: " + pModel.isGui3d());
-        System.out.println("  usesBlockLight: " + pModel.usesBlockLight());
-        System.out.println("  particleIcon: " + (particleIcon != null ? particleIcon.contents().name() : "NULL"));
-        System.out.println("  transforms: " + (transforms != null ? transforms.getClass().getSimpleName() : "NULL"));
-        System.out.println("  overrides: " + (pModel.getOverrides() != null ? pModel.getOverrides().getClass().getSimpleName() : "NULL"));
-
-        // --- Create and return a new SimpleBakedModel ---
-        BakedScintilla newBakedModel = new BakedScintilla(
-                dynamicGeneralQuads,
-                dynamicCulledFaces,
-                pModel.useAmbientOcclusion(),
-                pModel.isGui3d(),
-                pModel.usesBlockLight(),
-                particleIcon,
-                transforms,
-                ItemOverrides.EMPTY
+        // Build materials for ItemLayerModel
+        ImmutableList<Material> materials = ImmutableList.of(
+                new Material(net.minecraft.client.renderer.texture.TextureAtlas.LOCATION_BLOCKS, layer0),
+                new Material(net.minecraft.client.renderer.texture.TextureAtlas.LOCATION_BLOCKS, layer1),
+                new Material(net.minecraft.client.renderer.texture.TextureAtlas.LOCATION_BLOCKS, layer2),
+                new Material(net.minecraft.client.renderer.texture.TextureAtlas.LOCATION_BLOCKS, layer3)
         );
 
+        // Create ItemLayerModel
+        ScintillantModel ilm = new ScintillantModel(materials, null, null);
 
-        System.out.println("DEBUG: Successfully constructed SimpleBakedModel."); // Debug after successful construction
-        System.out.println(newBakedModel.getQuads(null, null, RandomSource.create(pSeed), ModelData.EMPTY, null));
-        return newBakedModel;
+        // Bake the model
+        ModelBaker baker = Minecraft.getInstance().getBa();
+        ModelState state = pModel.getOverrides() != null ? null : null; // Use null or get from context if needed
+        ItemOverrides overrides = ItemOverrides.EMPTY;
+        ResourceLocation modelLoc = new ResourceLocation("scintilla", "dynamic_item/" + cacheKey.hashCode());
+
+        // Use a simple IGeometryBakingContext (can be improved for transforms, etc.)
+        IGeometryBakingContext context = new IGeometryBakingContext() {
+            @Override public boolean hasMaterial(String name) { return name.startsWith("layer") && Integer.parseInt(name.substring(5)) < 4; }
+            @Override public Material getMaterial(String name) { int idx = Integer.parseInt(name.substring(5)); return materials.get(idx); }
+            // ...implement other methods as needed, or use a real context if available...
+        };
+
+        BakedModel baked = ilm.bake(context, baker, mat -> Minecraft.getInstance().getModelManager().getAtlas(mat.texture()).getSprite(mat.texture()), state, overrides, modelLoc);
+
+        // Cache and return
+        MODEL_CACHE.put(cacheKey, baked);
+        return baked;
     }
 }

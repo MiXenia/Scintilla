@@ -4,7 +4,9 @@ import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.world.item.DyeableLeatherItem;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.ModelEvent;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -98,8 +100,15 @@ public class ScintillaMod
     @SubscribeEvent
     public void registerItemColors(RegisterColorHandlersEvent.@NotNull Item event)
     {
-        event.register((ItemColor) (itemStack, i) -> i > 0 ? -1 : ((DyeableLeatherItem) itemStack.getItem()).getColor(itemStack), ModItems.SCINTILLA.get());
         event.register((ItemColor) (itemStack, i) -> i > 0 ? -1 : ((DyeableLeatherItem) itemStack.getItem()).getColor(itemStack), ModItems.SHATTERGLASS.get());
+        event.register((ItemColor) (itemStack, i) -> i > 0 ? -1 : ((DyeableLeatherItem) itemStack.getItem()).getColor(itemStack), ModItems.SCINTILLA.get());
+        //event.register((stack, layer) -> {
+        //    if (layer == 0) {
+        //        CompoundTag display = stack.getTagElement("Display");
+        //        return (display != null && display.contains("Color", 99)) ? display.getInt("Color") : 0xFFFFFF;
+        //    }
+        //    return 0xFFFFFF; // No tint for other layers
+        //}, ModItems.SCINTILLA.get());
     }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent

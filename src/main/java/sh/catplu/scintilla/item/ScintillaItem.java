@@ -12,7 +12,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
-public class ScintillaItem extends Item implements DyeableLeatherItem {
+
+public class ScintillaItem extends Item implements DyeableLeatherItem{
     public ScintillaItem(Properties pProperties) {
         //super(pProperties.food(NON_MODULAR_FOOD));
         super(pProperties);
@@ -44,11 +45,11 @@ public class ScintillaItem extends Item implements DyeableLeatherItem {
 
     }
 
-    @Override
-    public int getColor(ItemStack pStack) {
-        CompoundTag $$1 = pStack.getTagElement("display");
-        return $$1 != null && $$1.contains("color", 99) ? $$1.getInt("color") : 16777215;
-    }
+    //@Override
+    //public int getColor(ItemStack pStack) {
+    //    CompoundTag $$1 = pStack.getTagElement("display");
+    //    return $$1 != null && $$1.contains("color", 99) ? $$1.getInt("color") : 16777215;
+    //}
 
     @Override
     public SoundEvent getEatingSound() {
@@ -116,6 +117,7 @@ public class ScintillaItem extends Item implements DyeableLeatherItem {
         if (pLivingEntity instanceof Player player){
             if (player.getFoodData().getFoodLevel() < 20) {
                 if (pStack.getDamageValue() < pStack.getMaxDamage() - 1) {
+                    
                     FoodProperties nutrition = pStack.getFoodProperties(null);
                     if (nutrition != null) {
                         player.getFoodData().eat(nutrition.getNutrition(),nutrition.getSaturationModifier());
@@ -125,5 +127,10 @@ public class ScintillaItem extends Item implements DyeableLeatherItem {
             }
         }
         return pStack;
+    }
+
+    @Override
+    public void initializeClient(java.util.function.Consumer<net.minecraftforge.client.extensions.common.IClientItemExtensions> consumer) {
+        sh.catplu.scintilla.model.ScintillaModel.register(consumer);
     }
 }

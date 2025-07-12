@@ -20,6 +20,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import sh.catplu.scintilla.loot.ModLoot;
+import sh.catplu.scintilla.model.ScintillaModelLoader;
 import sh.catplu.scintilla.recipes.ModRecipes;
 import sh.catplu.scintilla.item.ModCreativeModeTabs;
 import sh.catplu.scintilla.item.ModItems;
@@ -122,6 +123,10 @@ public class ScintillaMod
             LOGGER.info("HELLO FROM CLIENT SETUP");
             LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
         }
+        @SubscribeEvent
+    public static void registerModelLoaders(ModelEvent.RegisterGeometryLoaders event) {
+        event.register("scintilla_model", new ScintillaModelLoader());
+    }
     }
 
 

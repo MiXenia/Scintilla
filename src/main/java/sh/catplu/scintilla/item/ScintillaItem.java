@@ -1,5 +1,6 @@
 package sh.catplu.scintilla.item;
 
+import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -10,6 +11,10 @@ import net.minecraft.world.item.DyeableLeatherItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.client.extensions.common.IClientItemExtensions;
+
+import java.util.function.Consumer;
+
 import org.jetbrains.annotations.Nullable;
 
 
@@ -127,10 +132,5 @@ public class ScintillaItem extends Item implements DyeableLeatherItem{
             }
         }
         return pStack;
-    }
-
-    @Override
-    public void initializeClient(java.util.function.Consumer<net.minecraftforge.client.extensions.common.IClientItemExtensions> consumer) {
-        sh.catplu.scintilla.model.ScintillaModel.register(consumer);
     }
 }

@@ -29,10 +29,12 @@ public class ModItems {
     public static final RegistryObject<Item> QUARTZ_DUST = ITEMS.register("quartz_dust",() -> new BuildyItem(new Item.Properties(),"t2nutrition",null,Rarity.UNCOMMON));
     public static final RegistryObject<Item> ECHO_DUST = ITEMS.register("echo_dust",() -> new BuildyItem(new Item.Properties(),"t3nutrition",null,Rarity.RARE));
     public static final RegistryObject<Item> STAR_DUST = ITEMS.register("star_dust",() -> new BuildyItem(new Item.Properties(),"t4nutrition",true,Rarity.EPIC));
+
     public static final RegistryObject<Item> AMETHYST_DUST = ITEMS.register("amethyst_dust",() -> new BuildyItem(new Item.Properties(),"t1saturation",null, Rarity.UNCOMMON));
     public static final RegistryObject<Item> BLAZE_DUST = ITEMS.register("blaze_dust",() -> new BuildyItem(new Item.Properties(),"t2saturation",null,Rarity.UNCOMMON));
     public static final RegistryObject<Item> HOTS_DUST = ITEMS.register("hots_dust",() -> new BuildyItem(new Item.Properties(),"t3saturation",null,Rarity.RARE));
     public static final RegistryObject<Item> PRISMARINE_DUST = ITEMS.register("prismarine_dust",() -> new BuildyItem(new Item.Properties(),"t4saturation",null,Rarity.EPIC));
+
     public static final RegistryObject<Item> GLASS_DUST = ITEMS.register("glass_dust",() -> new BuildyItem(new Item.Properties(),"t0durability",null,Rarity.COMMON));
     public static final RegistryObject<Item> EMERALD_DUST = ITEMS.register("emerald_dust",() -> new BuildyItem(new Item.Properties(),"t1durability",null,Rarity.UNCOMMON));
     public static final RegistryObject<Item> PEARL_DUST = ITEMS.register("pearl_dust",() -> new BuildyItem(new Item.Properties(),"t2durability",null,Rarity.UNCOMMON));

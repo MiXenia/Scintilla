@@ -116,10 +116,12 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModItems.QUARTZ_DUST.get());
                         pOutput.accept(ModItems.ECHO_DUST.get());
                         pOutput.accept(ModItems.STAR_DUST.get());
+
                         pOutput.accept(ModItems.AMETHYST_DUST.get());
                         pOutput.accept(ModItems.BLAZE_DUST.get());
                         pOutput.accept(ModItems.HOTS_DUST.get());
                         pOutput.accept(ModItems.PRISMARINE_DUST.get());
+
                         pOutput.accept(ModItems.GLASS_DUST.get());
                         pOutput.accept(ModItems.EMERALD_DUST.get());
                         pOutput.accept(ModItems.PEARL_DUST.get());

@@ -33,7 +33,7 @@ public class ScintillantOverrider extends ItemOverrides {
         BakedModel model = ScintillantGeometry.MODEL_CACHE.get(cacheKey);
         if (model == null) {
             // Bake on the fly using the parent model's ModelBaker and ModelState
-            model = ScintillantGeometry.bakeModel(bs, bm, dl, dr, parentModel.getModelBaker(), parentModel.getModelState(), new ScintillantOverrider(parentModel),parentModel.getSpriteGetter());
+            model = ScintillantGeometry.bakeModel(bs, bm, dl, dr, parentModel.getModelBaker(), parentModel.getModelState(), new ScintillantOverrider(parentModel),parentModel.getSpriteGetter(),parentModel.getTransforms());
             ScintillantGeometry.MODEL_CACHE.put(cacheKey, model);
         }
         return model != null ? model : pModel;

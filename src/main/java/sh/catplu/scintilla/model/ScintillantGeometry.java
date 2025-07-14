@@ -1,6 +1,7 @@
 package sh.catplu.scintilla.model;
 
 import com.google.common.collect.ImmutableList;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.BlockElement;
 import net.minecraft.client.renderer.block.model.ItemOverrides;
@@ -53,7 +54,7 @@ public class ScintillantGeometry implements IUnbakedGeometry<ScintillantGeometry
         );
 
         // Build a layered item model (like vanilla's ItemLayerModel)
-        BakedModel model = bakeModel(bs, bm, dl, dr, baker, modelState, overrides, spriteGetter);
+        BakedModel model = bakeModel(bs, bm, dl, dr, baker, modelState, overrides, spriteGetter, context.getTransforms());
         // Populate the cache for the default key
         String cacheKey = "c_" + bs + "_" + bm + "_" + dl + "_" + dr;
         MODEL_CACHE.put(cacheKey, model);
@@ -63,7 +64,8 @@ public class ScintillantGeometry implements IUnbakedGeometry<ScintillantGeometry
     public static BakedModel bakeModel(
         String bs, String bm, String dl, String dr,
         ModelBaker baker, ModelState state, ItemOverrides overrides,
-        Function<Material, TextureAtlasSprite> spriteGetter
+        Function<Material, TextureAtlasSprite> spriteGetter,
+        ItemTransforms transforms
     ) {
         ResourceLocation layer0 = new ResourceLocation("scintilla","item/s_" + bs + "_shatterglass");
         ResourceLocation layer1 = new ResourceLocation("scintilla","item/l_" + bs + "_" + dl);
@@ -77,7 +79,7 @@ public class ScintillantGeometry implements IUnbakedGeometry<ScintillantGeometry
             new Material(net.minecraft.world.inventory.InventoryMenu.BLOCK_ATLAS, layer3)
         );
 
-        return new LayeredItemModel(materials, spriteGetter, state, overrides, baker);
+        return new LayeredItemModel(materials, spriteGetter, state, overrides, baker, transforms);
     }
 
     // Add a static cache and a getOrBake method:
@@ -95,13 +97,15 @@ public class ScintillantGeometry implements IUnbakedGeometry<ScintillantGeometry
         private final ModelState modelState;
         private final ItemOverrides overrides;
         private final ModelBaker modelBaker;
+        private final ItemTransforms transforms;
 
-        public LayeredItemModel(ImmutableList<Material> materials, Function<Material, TextureAtlasSprite> spriteGetter, ModelState modelState, ItemOverrides overrides, ModelBaker modelBaker) {
+        public LayeredItemModel(ImmutableList<Material> materials, Function<Material, TextureAtlasSprite> spriteGetter, ModelState modelState, ItemOverrides overrides, ModelBaker modelBaker, ItemTransforms transforms) {
             this.materials = materials;
             this.spriteGetter = spriteGetter;
             this.modelState = modelState;
             this.overrides = new ScintillantOverrider(this); // Pass self to overrider
             this.modelBaker = modelBaker;
+            this.transforms = transforms;
         }
 
         @Override
@@ -131,6 +135,12 @@ public class ScintillantGeometry implements IUnbakedGeometry<ScintillantGeometry
 
             return quads.build();
         }
+
+        @Override
+        public ItemTransforms getTransforms() {
+            return transforms;
+        }
+
 
         @Override
         public boolean useAmbientOcclusion() { return false; }

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "minecraft:ender_eye"
+  },
+  "result": "scintilla:eye_dust",
+  "count": 1
+}

@@ -1,6 +1,40 @@
 {
-  "item.scintilla.shatterglass": "Shatterglass",
-  "item.scintilla.scintilla": "Scintilla",
+  "item.scintilla.shatterglass":    "Shatterglass",
+  "item.scintilla.scintilla":       "Scintilla",
 
-  "creativetab.scintilla_tab": "Scintilla"
+  "item.scintilla.amethyst_dust":   "Crushed Amethyst",
+  "item.scintilla.blaze_dust":      "Blaze Ash",
+  "item.scintilla.crystal_dust":    "End Crystal Debris",
+  "item.scintilla.diamond_dust":    "Diamond Dust",
+  "item.scintilla.echo_dust":       "Echoic Earth",
+  "item.scintilla.emerald_dust":    "Emerald Glitter",
+  "item.scintilla.end_dust":        "End Matter",
+  "item.scintilla.eye_dust":        "Rheum of Ender",
+  "item.scintilla.glass_dust":      "Glass Mist",
+  "item.scintilla.hots_dust":       "Salt of the Sea",
+  "item.scintilla.pearl_dust":      "Pearl Sand",
+  "item.scintilla.prismarine_dust": "Prismarine Powder",
+  "item.scintilla.quartz_dust":     "Quartz Silica Dust",
+  "item.scintilla.star_dust":       "Nether Stardust",
+
+  "creativetab.scintilla_tab":      "Scintilla",
+
+  "tooltip.scintilla.t0nutrition": "About as filling as a cookie... somehow.",
+  "tooltip.scintilla.t1nutrition": "About as filling as an apple... somehow.",
+  "tooltip.scintilla.t2nutrition": "About as filling as cooked chicken... somehow.",
+  "tooltip.scintilla.t3nutrition": "About as filling as a pumpkin pie... somehow.",
+  "tooltip.scintilla.t4nutrition": "About as filling as rabbit stew... somehow.",
+
+  "tooltip.scintilla.t0saturation": "About as healthy as a cake slice... somehow.",
+  "tooltip.scintilla.t1saturation": "About as healthy as a melon slice... somehow.",
+  "tooltip.scintilla.t2saturation": "About as healthy as bread... somehow.",
+  "tooltip.scintilla.t3saturation": "About as healthy as cooked steak... somehow.",
+  "tooltip.scintilla.t4saturation": "More healthy than a golden carrot... somehow.",
+
+  "tooltip.scintilla.t0durability": "Would make some good bottles for holding Scintilla.",
+  "tooltip.scintilla.t1durability": "Seems to have some very minor space warping abilities.",
+  "tooltip.scintilla.t2durability": "Seems to have some small space warping abilities.",
+  "tooltip.scintilla.t3durability": "Seems to have some decent space warping abilities.",
+  "tooltip.scintilla.t4durability": "Seems to have some powerful space warping abilities.",
+  "tooltip.scintilla.t5durability": "Seems to have some extremely powerful space warping abilities. It's... difficult to hold."
 }

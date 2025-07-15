@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "pearl_bottles",
+  "category": "misc",
+  "pattern": [
+    "GCG",
+    "GGG",
+    " G "
+  ],
+  "key": {
+    "C": {
+      "tag": "minecraft:planks"
+    },
+    "G": {
+      "item": "scintilla:pearl_dust"
+    }
+  },
+  "result": {
+    "item": "scintilla:heart_pearl_bottle"
+  }
+}

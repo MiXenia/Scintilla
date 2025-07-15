@@ -3,6 +3,6 @@
   "ingredient": {
     "item": "minecraft:end_crystal"
   },
-  "result": "scintilla:end_dust",
+  "result": "scintilla:crystal_dust",
   "count": 1
 }

@@ -27,7 +27,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
 
-@SuppressWarnings("removal")
+
 public class ScintillantGeometry implements IUnbakedGeometry<ScintillantGeometry> {
     private final String bs, bm, dl, dr;
 
@@ -41,10 +41,10 @@ public class ScintillantGeometry implements IUnbakedGeometry<ScintillantGeometry
     @Override
     public BakedModel bake(IGeometryBakingContext context, ModelBaker baker, Function<Material, TextureAtlasSprite> spriteGetter, ModelState modelState, ItemOverrides overrides, ResourceLocation modelLocation) {
         // Compose the texture paths
-        ResourceLocation layer0 = new ResourceLocation("scintilla","item/s_" + bs + "_shatterglass");
-        ResourceLocation layer1 = new ResourceLocation("scintilla","item/l_" + bs + "_" + dl);
-        ResourceLocation layer2 = new ResourceLocation("scintilla","item/r_" + bs + "_" + dr);
-        ResourceLocation layer3 = new ResourceLocation("scintilla","item/b_" + bs + "_" + bm);
+        ResourceLocation layer0 = ResourceLocation.fromNamespaceAndPath("scintilla","item/s_" + bs + "_shatterglass");
+        ResourceLocation layer1 = ResourceLocation.fromNamespaceAndPath("scintilla","item/l_" + bs + "_" + dl);
+        ResourceLocation layer2 = ResourceLocation.fromNamespaceAndPath("scintilla","item/r_" + bs + "_" + dr);
+        ResourceLocation layer3 = ResourceLocation.fromNamespaceAndPath("scintilla","item/b_" + bs + "_" + bm);
 
         ImmutableList<Material> materials = ImmutableList.of(
                 new Material(InventoryMenu.BLOCK_ATLAS, layer0),
@@ -67,10 +67,10 @@ public class ScintillantGeometry implements IUnbakedGeometry<ScintillantGeometry
         Function<Material, TextureAtlasSprite> spriteGetter,
         ItemTransforms transforms
     ) {
-        ResourceLocation layer0 = new ResourceLocation("scintilla","item/s_" + bs + "_shatterglass");
-        ResourceLocation layer1 = new ResourceLocation("scintilla","item/l_" + bs + "_" + dl);
-        ResourceLocation layer2 = new ResourceLocation("scintilla","item/r_" + bs + "_" + dr);
-        ResourceLocation layer3 = new ResourceLocation("scintilla","item/b_" + bs + "_" + bm);
+        ResourceLocation layer0 = ResourceLocation.fromNamespaceAndPath("scintilla","item/s_" + bs + "_shatterglass");
+        ResourceLocation layer1 = ResourceLocation.fromNamespaceAndPath("scintilla","item/l_" + bs + "_" + dl);
+        ResourceLocation layer2 = ResourceLocation.fromNamespaceAndPath("scintilla","item/r_" + bs + "_" + dr);
+        ResourceLocation layer3 = ResourceLocation.fromNamespaceAndPath("scintilla","item/b_" + bs + "_" + bm);
 
         ImmutableList<Material> materials = ImmutableList.of(
             new Material(net.minecraft.world.inventory.InventoryMenu.BLOCK_ATLAS, layer0),

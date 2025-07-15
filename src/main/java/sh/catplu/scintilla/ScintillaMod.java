@@ -4,11 +4,13 @@ import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.world.item.DyeableLeatherItem;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ModelEvent;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -24,6 +26,8 @@ import sh.catplu.scintilla.model.ScintillaModelLoader;
 import sh.catplu.scintilla.recipes.ModRecipes;
 import sh.catplu.scintilla.item.ModCreativeModeTabs;
 import sh.catplu.scintilla.item.ModItems;
+import sh.catplu.scintilla.item.ScintillaItem;
+import sh.catplu.scintilla.item.ShatterglassItem;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(ScintillaMod.MOD_ID)
@@ -124,10 +128,9 @@ public class ScintillaMod
             LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
         }
         @SubscribeEvent
-    public static void registerModelLoaders(ModelEvent.RegisterGeometryLoaders event) {
-        event.register("scintilla_model", new ScintillaModelLoader());
+        public static void registerModelLoaders(ModelEvent.RegisterGeometryLoaders event) {
+            event.register("scintilla_model", new ScintillaModelLoader());
+        }
     }
-    }
-
-
 }
+

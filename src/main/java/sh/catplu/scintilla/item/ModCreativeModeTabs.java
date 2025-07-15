@@ -4,6 +4,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -24,18 +25,30 @@ public class ModCreativeModeTabs {
                         CompoundTag s3 = new CompoundTag();
                         CompoundTag s4 = new CompoundTag();
                         CompoundTag s5 = new CompoundTag();
+                        CompoundTag s6 = new CompoundTag();
+                        CompoundTag s7 = new CompoundTag();
+                        CompoundTag s8 = new CompoundTag();
+
                         CompoundTag d0 = new CompoundTag();
                         CompoundTag d1 = new CompoundTag();
                         CompoundTag d2 = new CompoundTag();
                         CompoundTag d3 = new CompoundTag();
                         CompoundTag d4 = new CompoundTag();
                         CompoundTag d5 = new CompoundTag();
+                        CompoundTag d6 = new CompoundTag();
+                        CompoundTag d7 = new CompoundTag();
+                        CompoundTag d8 = new CompoundTag();
+
                         ItemStack i0 = new ItemStack(ModItems.SCINTILLA.get());
                         ItemStack i1 = new ItemStack(ModItems.SCINTILLA.get());
                         ItemStack i2 = new ItemStack(ModItems.SCINTILLA.get());
                         ItemStack i3 = new ItemStack(ModItems.SCINTILLA.get());
                         ItemStack i4 = new ItemStack(ModItems.SCINTILLA.get());
                         ItemStack i5 = new ItemStack(ModItems.SCINTILLA.get());
+                        ItemStack i6 = new ItemStack(ModItems.SCINTILLA.get());
+                        ItemStack i7 = new ItemStack(ModItems.SCINTILLA.get());
+                        ItemStack i8 = new ItemStack(ModItems.SCINTILLA.get());
+
                         d0.putString("bs","vanilla");
                         d0.putString("bm","glass");
                         d0.putString("dl","sugar");
@@ -96,12 +109,45 @@ public class ModCreativeModeTabs {
                         s5.putFloat("sv",20.0f);
                         s5.put("display",d5);
 
+                        d6.putString("bs","dusty");
+                        d6.putString("bm","glass");
+                        d6.putString("dl","redstone");
+                        d6.putString("dr","glowstone");
+                        d6.putInt("color",16777215);
+                        s6.putInt("md",257);
+                        s6.putInt("hv",10);
+                        s6.putFloat("sv",20.0f);
+                        s6.put("display",d6);
+
+                        d7.putString("bs","vial");
+                        d7.putString("bm","crystal");
+                        d7.putString("dl","crystal");
+                        d7.putString("dr","crystal");
+                        d7.putInt("color",9784763);
+                        s7.putInt("md",257);
+                        s7.putInt("hv",10);
+                        s7.putFloat("sv",20.0f);
+                        s7.put("display",d7);
+
+                        d8.putString("bs","diamond");
+                        d8.putString("bm","end");
+                        d8.putString("dl","glass");
+                        d8.putString("dr","glass");
+                        d8.putInt("color",12886696);
+                        s8.putInt("md",257);
+                        s8.putInt("hv",10);
+                        s8.putFloat("sv",20.0f);
+                        s8.put("display",d8);
+
                         i0.setTag(s0);
                         i1.setTag(s1);
                         i2.setTag(s2);
                         i3.setTag(s3);
                         i4.setTag(s4);
                         i5.setTag(s5);
+                        i6.setTag(s6);
+                        i7.setTag(s7);
+                        i8.setTag(s8);
 
                         pOutput.accept(i0);
                         pOutput.accept(i1);
@@ -109,8 +155,18 @@ public class ModCreativeModeTabs {
                         pOutput.accept(i3);
                         pOutput.accept(i4);
                         pOutput.accept(i5);
+                        pOutput.accept(i6);
+                        pOutput.accept(i7);
+                        pOutput.accept(i8);
 
-                        pOutput.accept(ModItems.SHATTERGLASS.get());
+                        CompoundTag sgd = new CompoundTag();
+                        CompoundTag sgt = new CompoundTag();
+                        sgd.putInt("color",16777215);
+                        sgt.put("display",sgd);
+                        ItemStack sg = new ItemStack(ModItems.SHATTERGLASS.get());
+                        sg.setTag(sgt);
+
+                        pOutput.accept(sg);
 
                         pOutput.accept(ModItems.DIAMOND_DUST.get());
                         pOutput.accept(ModItems.QUARTZ_DUST.get());
@@ -122,12 +178,66 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModItems.HOTS_DUST.get());
                         pOutput.accept(ModItems.PRISMARINE_DUST.get());
 
+
                         pOutput.accept(ModItems.GLASS_DUST.get());
+                        pOutput.accept(ModItems.DIAMOND_GLASS_BOTTLE.get());
+                        pOutput.accept(ModItems.DUSTY_GLASS_BOTTLE.get());
+                        pOutput.accept(ModItems.HEART_GLASS_BOTTLE.get());
+                        pOutput.accept(ModItems.HOLY_GLASS_BOTTLE.get());
+                        pOutput.accept(ModItems.JAR_GLASS_BOTTLE.get());
+                        pOutput.accept(ModItems.STAR_GLASS_BOTTLE.get());
+                        pOutput.accept(ModItems.VANILLA_GLASS_BOTTLE.get());
+                        pOutput.accept(ModItems.VIAL_GLASS_BOTTLE.get());
+
                         pOutput.accept(ModItems.EMERALD_DUST.get());
+                        pOutput.accept(ModItems.DIAMOND_EMERALD_BOTTLE.get());
+                        pOutput.accept(ModItems.DUSTY_EMERALD_BOTTLE.get());
+                        pOutput.accept(ModItems.HEART_EMERALD_BOTTLE.get());
+                        pOutput.accept(ModItems.HOLY_EMERALD_BOTTLE.get());
+                        pOutput.accept(ModItems.JAR_EMERALD_BOTTLE.get());
+                        pOutput.accept(ModItems.STAR_EMERALD_BOTTLE.get());
+                        pOutput.accept(ModItems.VANILLA_EMERALD_BOTTLE.get());
+                        pOutput.accept(ModItems.VIAL_EMERALD_BOTTLE.get());
+
                         pOutput.accept(ModItems.PEARL_DUST.get());
+                        pOutput.accept(ModItems.DIAMOND_PEARL_BOTTLE.get());
+                        pOutput.accept(ModItems.DUSTY_PEARL_BOTTLE.get());
+                        pOutput.accept(ModItems.HEART_PEARL_BOTTLE.get());
+                        pOutput.accept(ModItems.HOLY_PEARL_BOTTLE.get());
+                        pOutput.accept(ModItems.JAR_PEARL_BOTTLE.get());
+                        pOutput.accept(ModItems.STAR_PEARL_BOTTLE.get());
+                        pOutput.accept(ModItems.VANILLA_PEARL_BOTTLE.get());
+                        pOutput.accept(ModItems.VIAL_PEARL_BOTTLE.get());
+
                         pOutput.accept(ModItems.EYE_DUST.get());
+                        pOutput.accept(ModItems.DIAMOND_EYE_BOTTLE.get());
+                        pOutput.accept(ModItems.DUSTY_EYE_BOTTLE.get());
+                        pOutput.accept(ModItems.HEART_EYE_BOTTLE.get());
+                        pOutput.accept(ModItems.HOLY_EYE_BOTTLE.get());
+                        pOutput.accept(ModItems.JAR_EYE_BOTTLE.get());
+                        pOutput.accept(ModItems.STAR_EYE_BOTTLE.get());
+                        pOutput.accept(ModItems.VANILLA_EYE_BOTTLE.get());
+                        pOutput.accept(ModItems.VIAL_EYE_BOTTLE.get());
+
                         pOutput.accept(ModItems.CRYSTAL_DUST.get());
+                        pOutput.accept(ModItems.DIAMOND_CRYSTAL_BOTTLE.get());
+                        pOutput.accept(ModItems.DUSTY_CRYSTAL_BOTTLE.get());
+                        pOutput.accept(ModItems.HEART_CRYSTAL_BOTTLE.get());
+                        pOutput.accept(ModItems.HOLY_CRYSTAL_BOTTLE.get());
+                        pOutput.accept(ModItems.JAR_CRYSTAL_BOTTLE.get());
+                        pOutput.accept(ModItems.STAR_CRYSTAL_BOTTLE.get());
+                        pOutput.accept(ModItems.VANILLA_CRYSTAL_BOTTLE.get());
+                        pOutput.accept(ModItems.VIAL_CRYSTAL_BOTTLE.get());
+
                         pOutput.accept(ModItems.END_DUST.get());
+                        pOutput.accept(ModItems.DIAMOND_END_BOTTLE.get());
+                        pOutput.accept(ModItems.DUSTY_END_BOTTLE.get());
+                        pOutput.accept(ModItems.HEART_END_BOTTLE.get());
+                        pOutput.accept(ModItems.HOLY_END_BOTTLE.get());
+                        pOutput.accept(ModItems.JAR_END_BOTTLE.get());
+                        pOutput.accept(ModItems.STAR_END_BOTTLE.get());
+                        pOutput.accept(ModItems.VANILLA_END_BOTTLE.get());
+                        pOutput.accept(ModItems.VIAL_END_BOTTLE.get());
 
                     })
                     .build());

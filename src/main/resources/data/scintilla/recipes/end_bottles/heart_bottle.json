@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "end_bottles",
+  "category": "misc",
+  "pattern": [
+    "GCG",
+    "GGG",
+    " G "
+  ],
+  "key": {
+    "C": {
+      "tag": "minecraft:planks"
+    },
+    "G": {
+      "item": "scintilla:end_dust"
+    }
+  },
+  "result": {
+    "item": "scintilla:heart_end_bottle"
+  }
+}

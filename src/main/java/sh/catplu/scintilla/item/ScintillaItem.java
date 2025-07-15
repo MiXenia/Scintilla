@@ -118,6 +118,11 @@ public class ScintillaItem extends Item implements DyeableLeatherItem{
     }
 
     @Override
+    public boolean isFoil(ItemStack pStack) {
+        return false;
+    }
+
+    @Override
     public ItemStack finishUsingItem(ItemStack pStack, Level pLevel, LivingEntity pLivingEntity) {
         if (pLivingEntity instanceof Player player){
             if (player.getFoodData().getFoodLevel() < 20) {
@@ -127,10 +132,15 @@ public class ScintillaItem extends Item implements DyeableLeatherItem{
                     if (nutrition != null) {
                         player.getFoodData().eat(nutrition.getNutrition(),nutrition.getSaturationModifier());
                     }
-                    pStack.setDamageValue(pStack.getDamageValue() + 1);
+                    pStack.hurt(1, pLevel.getRandom(), player instanceof net.minecraft.server.level.ServerPlayer ? (net.minecraft.server.level.ServerPlayer) player : null);
                 }
             }
         }
         return pStack;
+    }
+
+    @Override
+    public boolean isValidRepairItem(ItemStack pStack, ItemStack pRepairCandidate) {
+        return pRepairCandidate.getItem() instanceof ShatterglassItem;
     }
 }

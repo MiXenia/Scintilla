@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "eye_bottles",
+  "category": "misc",
+  "pattern": [
+    " GC",
+    "G G",
+    " G "
+  ],
+  "key": {
+    "C": {
+      "tag": "minecraft:planks"
+    },
+    "G": {
+      "item": "scintilla:eye_dust"
+    }
+  },
+  "result": {
+    "item": "scintilla:holy_eye_bottle"
+  }
+}

@@ -37,6 +37,7 @@ public class ColorTransfer extends ShapedRecipe {
     private final ItemStack pResult;
     private final boolean pShowNotification;
     final int colorSourceSlot;
+    private int matchedColorSourceSlot = -1;
 
     public ColorTransfer(ResourceLocation pId, String pGroup, CraftingBookCategory pCategory, int pWidth, int pHeight, NonNullList<Ingredient> pRecipeItems, ItemStack pResult, boolean pShowNotification, int colorSourceSlot) {
         super(pId, pGroup, pCategory, pWidth, pHeight, pRecipeItems, pResult, pShowNotification);
@@ -57,32 +58,36 @@ public class ColorTransfer extends ShapedRecipe {
         }
         for (int i = 0; i <= pInv.getWidth() - this.pWidth; ++i) {
             for (int j = 0; j <= pInv.getHeight() - this.pHeight; ++j) {
-                if (this.matches(pInv, i, j, true)) {
-                    return true;
-                }
-
+                int slot = getColorSlot(i,j,pInv.getWidth(),pInv.getHeight());
                 if (this.matches(pInv, i, j, false)) {
-                    if (pInv.getItem(this.colorSourceSlot).hasTag()) {
+                    if (pInv.getItem(slot).hasTag()) {
+                        this.matchedColorSourceSlot = slot;
                         return true;
                     }
                 }
             }
         }
+        this.matchedColorSourceSlot = -1;
         return false;
     }
 
+    private int getColorSlot(int i, int j, int width, int height) {
+        int recipeX = this.colorSourceSlot % this.pWidth;
+        int recipeY = this.colorSourceSlot / this.pWidth;
+        int gridX = i + recipeX;
+        int gridY = j + recipeY;
+        return gridX + gridY * width;
+    }
+
     private boolean matches(CraftingContainer pCraftingInventory, int pWidth, int pHeight, boolean pMirrored) {
+        if (pMirrored) return false;
         for (int i = 0; i < pCraftingInventory.getWidth(); ++i) {
             for (int j = 0; j < pCraftingInventory.getHeight(); ++j) {
                 int k = i - pWidth;
                 int l = j - pHeight;
                 Ingredient ingredient = Ingredient.EMPTY;
                 if (k >= 0 && l >= 0 && k < this.pWidth && l < this.pHeight) {
-                    if (pMirrored) {
-                        ingredient = (Ingredient) this.pRecipeItems.get(this.pWidth - k - 1 + l * this.pWidth);
-                    } else {
-                        ingredient = (Ingredient) this.pRecipeItems.get(k + l * this.pWidth);
-                    }
+                    ingredient = this.pRecipeItems.get(k + l * this.pWidth);
                 }
 
                 if (!ingredient.test(pCraftingInventory.getItem(i + j * pCraftingInventory.getWidth()))) {
@@ -96,7 +101,7 @@ public class ColorTransfer extends ShapedRecipe {
 
     @Override
     public ItemStack assemble(CraftingContainer pContainer, RegistryAccess pRegistryAccess) {
-        ItemStack donor = pContainer.getItem(this.colorSourceSlot);
+        ItemStack donor = pContainer.getItem(this.matchedColorSourceSlot);
         ItemStack source = this.pResult.copy();
         ItemStack output = NBTCopyUtil.mergeNbtPreservingExisting(donor,source);
         return output;
@@ -224,8 +229,8 @@ public class ColorTransfer extends ShapedRecipe {
 
     public static class Serializer implements RecipeSerializer<ColorTransfer> {
         public static final ColorTransfer.Serializer INSTANCE = new ColorTransfer.Serializer();
-        @SuppressWarnings("removal")
-        public static final ResourceLocation ID = new ResourceLocation(ScintillaMod.MOD_ID, "color");
+
+        public static final ResourceLocation ID = ResourceLocation.fromNamespaceAndPath(ScintillaMod.MOD_ID, "color");
 
         @Override
         public ColorTransfer fromJson(ResourceLocation pRecipeId, JsonObject pJson) {

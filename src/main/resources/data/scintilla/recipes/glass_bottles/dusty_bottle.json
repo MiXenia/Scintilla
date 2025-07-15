@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "glass_bottles",
+  "category": "misc",
+  "pattern": [
+    " C ",
+    " G ",
+    "GGG"
+  ],
+  "key": {
+    "C": {
+      "tag": "minecraft:planks"
+    },
+    "G": {
+      "item": "scintilla:glass_dust"
+    }
+  },
+  "result": {
+    "item": "scintilla:dusty_glass_bottle"
+  }
+}

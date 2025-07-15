@@ -13,6 +13,6 @@ public class ShatterglassItem extends Item implements DyeableLeatherItem {
     @Override
     public int getColor(ItemStack pStack) {
         CompoundTag $$1 = pStack.getTagElement("display");
-        return $$1 != null && $$1.contains("color", 99) ? $$1.getInt("color") : 16777215;
+        return $$1 != null && $$1.contains("color", 99) ? $$1.getInt("color") : 16755421;
     }
 }

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "crystal_bottles",
+  "category": "misc",
+  "pattern": [
+    " C ",
+    " G ",
+    " G "
+  ],
+  "key": {
+    "C": {
+      "tag": "minecraft:planks"
+    },
+    "G": {
+      "item": "scintilla:crystal_dust"
+    }
+  },
+  "result": {
+    "item": "scintilla:vial_crystal_bottle"
+  }
+}

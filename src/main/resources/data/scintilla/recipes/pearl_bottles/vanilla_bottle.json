@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "pearl_bottles",
+  "category": "misc",
+  "pattern": [
+    " C ",
+    "G G",
+    " G "
+  ],
+  "key": {
+    "C": {
+      "tag": "minecraft:planks"
+    },
+    "G": {
+      "item": "scintilla:pearl_dust"
+    }
+  },
+  "result": {
+    "item": "scintilla:vanilla_pearl_bottle"
+  }
+}

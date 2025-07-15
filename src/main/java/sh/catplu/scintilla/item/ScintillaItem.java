@@ -2,10 +2,10 @@ package sh.catplu.scintilla.item;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.LivingEntity;
@@ -13,31 +13,24 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.client.extensions.common.IClientItemExtensions;
-
-import java.util.List;
-import java.util.function.Consumer;
-
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
 
-public class ScintillaItem extends Item implements DyeableLeatherItem{
+
+public class ScintillaItem extends Item implements DyeableLeatherItem {
     public ScintillaItem(Properties pProperties) {
         //super(pProperties.food(NON_MODULAR_FOOD));
         super(pProperties);
     }
 
-    private static FoodProperties NON_MODULAR_FOOD =
-        new FoodProperties.Builder()
-                .alwaysEat()
-                .build();
-
     @Override
     public @Nullable FoodProperties getFoodProperties(ItemStack stack, @Nullable LivingEntity entity) {
-        if (stack.hasTag() && stack.getTag().contains("hv") && stack.getTag().contains("sv")) {
-            CompoundTag nbt = stack.getOrCreateTag();
-            int hunger = nbt.getInt("hv");
-            float saturation = nbt.getFloat("sv");
+        if (stack.hasTag() && (stack.getTag() != null && stack.getTag().contains("hv")) && stack.getTag().contains("sv")) {
+            CompoundTag nbt        = stack.getOrCreateTag();
+            int         hunger     = nbt.getInt("hv");
+            float       saturation = nbt.getFloat("sv");
             return new FoodProperties.Builder()
                     .nutrition(hunger)
                     .saturationMod(saturation)
@@ -53,25 +46,19 @@ public class ScintillaItem extends Item implements DyeableLeatherItem{
 
     }
 
-    //@Override
-    //public int getColor(ItemStack pStack) {
-    //    CompoundTag $$1 = pStack.getTagElement("display");
-    //    return $$1 != null && $$1.contains("color", 99) ? $$1.getInt("color") : 16777215;
-    //}
-
     @Override
-    public SoundEvent getEatingSound() {
+    public @NotNull SoundEvent getEatingSound() {
         return SoundEvents.AMETHYST_BLOCK_BREAK;
     }
 
     @Override
-    public int getUseDuration(ItemStack pStack) {
+    public int getUseDuration(@NotNull ItemStack pStack) {
         return 22;
     }
 
     @Override
     public int getMaxDamage(ItemStack stack) {
-        if (stack.hasTag() && stack.getTag().contains("md")) {
+        if (stack.hasTag() && (stack.getTag() != null && stack.getTag().contains("md"))) {
             return stack.getTag().getInt("md");
         } else {
             return super.getMaxDamage(stack);
@@ -80,7 +67,7 @@ public class ScintillaItem extends Item implements DyeableLeatherItem{
 
     @Override
     public boolean isBarVisible(ItemStack pStack) {
-        if (pStack.hasTag() && pStack.getTag().contains("Damage")) {
+        if (pStack.hasTag() && (pStack.getTag() != null && pStack.getTag().contains("Damage"))) {
             return pStack.getTag().getInt("Damage") > 0;
         } else {
             return super.isBarVisible(pStack);
@@ -89,7 +76,7 @@ public class ScintillaItem extends Item implements DyeableLeatherItem{
 
     @Override
     public int getBarWidth(ItemStack pStack) {
-        if (pStack.hasTag() && pStack.getTag().contains("Damage") && pStack.getTag().contains("md")) {
+        if (pStack.hasTag() && (pStack.getTag() != null && pStack.getTag().contains("Damage")) && pStack.getTag().contains("md")) {
             int cd = pStack.getTag().getInt("Damage");
             int md = pStack.getTag().getInt("md");
             return Math.round(13.0f - (float) cd * 13.0f / (float) md);
@@ -100,42 +87,41 @@ public class ScintillaItem extends Item implements DyeableLeatherItem{
 
     @Override
     public int getBarColor(ItemStack pStack) {
-        if (pStack.hasTag() && pStack.getTag().contains("Damage") && pStack.getTag().contains("md")) {
-            int cd = pStack.getTag().getInt("Damage");
-            int md = pStack.getTag().getInt("md");
+        if (pStack.hasTag() && (pStack.getTag() != null && pStack.getTag().contains("Damage")) && pStack.getTag().contains("md")) {
+            int   cd = pStack.getTag().getInt("Damage");
+            int   md = pStack.getTag().getInt("md");
             float pc = (float) cd / (float) md;
-            int sr = 255;
-            int sg = 170;
-            int sb = 221;
-            int er = 170;
-            int eg = 238;
-            int eb = 255;
-            int ir = (int) (sr + (er - sr) * pc);
-            int ig = (int) (sg + (eg - sg) * pc);
-            int ib = (int) (sb + (eb - sb) * pc);
-            int color = (ir << 16) | (ig << 8) | ib;
-            return color;
+            int   sr = 255;
+            int   sg = 170;
+            int   sb = 221;
+            int   er = 170;
+            int   eg = 238;
+            int   eb = 255;
+            int   ir = (int) (sr + (er - sr) * pc);
+            int   ig = (int) (sg + (eg - sg) * pc);
+            int   ib = (int) (sb + (eb - sb) * pc);
+            return (ir << 16) | (ig << 8) | ib;
         } else {
             return super.getBarColor(pStack);
         }
     }
 
     @Override
-    public boolean isFoil(ItemStack pStack) {
+    public boolean isFoil(@NotNull ItemStack pStack) {
         return false;
     }
 
     @Override
-    public ItemStack finishUsingItem(ItemStack pStack, Level pLevel, LivingEntity pLivingEntity) {
-        if (pLivingEntity instanceof Player player){
+    public @NotNull ItemStack finishUsingItem(@NotNull ItemStack pStack, @NotNull Level pLevel, @NotNull LivingEntity pLivingEntity) {
+        if (pLivingEntity instanceof Player player) {
             if (player.getFoodData().getFoodLevel() < 20) {
                 if (pStack.getDamageValue() < pStack.getMaxDamage() - 1) {
-                    
+
                     FoodProperties nutrition = pStack.getFoodProperties(null);
                     if (nutrition != null) {
-                        player.getFoodData().eat(nutrition.getNutrition(),nutrition.getSaturationModifier());
+                        player.getFoodData().eat(nutrition.getNutrition(), nutrition.getSaturationModifier());
                     }
-                    pStack.hurt(1, pLevel.getRandom(), player instanceof net.minecraft.server.level.ServerPlayer ? (net.minecraft.server.level.ServerPlayer) player : null);
+                    pStack.hurt(1, pLevel.getRandom(), player instanceof ServerPlayer ? (ServerPlayer) player : null);
                 }
             }
         }
@@ -143,15 +129,15 @@ public class ScintillaItem extends Item implements DyeableLeatherItem{
     }
 
     @Override
-    public boolean isValidRepairItem(ItemStack pStack, ItemStack pRepairCandidate) {
+    public boolean isValidRepairItem(@NotNull ItemStack pStack, ItemStack pRepairCandidate) {
         return pRepairCandidate.getItem() instanceof ShatterglassItem;
     }
 
     @Override
-    public void appendHoverText(ItemStack pStack, @org.jetbrains.annotations.Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
+    public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, @NotNull List<Component> pTooltipComponents, @NotNull TooltipFlag pIsAdvanced) {
         if (pStack.hasTag()) {
             CompoundTag tag = pStack.getTag();
-            if (tag.contains("display")) {
+            if (tag != null && tag.contains("display")) {
                 CompoundTag display = tag.getCompound("display");
                 if (display.contains("dl")) {
                     MutableComponent l1 = Component.translatable("tooltip.scintilla.left_dust");
@@ -168,15 +154,15 @@ public class ScintillaItem extends Item implements DyeableLeatherItem{
                 if (display.contains("bs") && display.contains("bm")) {
                     MutableComponent b1 = Component.translatable("tooltip.scintilla.bottle");
                     MutableComponent b2 = Component.translatable("item.scintilla."
-                                    + display.getString("bs")
-                                    + "_"
-                                    + display.getString("bm")
-                                    + "_bottle");
+                            + display.getString("bs")
+                            + "_"
+                            + display.getString("bm")
+                            + "_bottle");
                     MutableComponent b3 = b1.append(b2);
                     pTooltipComponents.add(b3.withStyle(ChatFormatting.DARK_GRAY));
                 }
             }
-            if (tag.contains("hv") || tag.contains("sv") || tag.contains("md")) {
+            if ((tag != null && tag.contains("hv")) || (tag != null && tag.contains("sv")) || (tag != null && tag.contains("md"))) {
                 if (Screen.hasShiftDown()) {
                     if (tag.contains("hv")) {
                         MutableComponent h1 = Component.translatable("tooltip.scintilla.nutrition");
@@ -185,12 +171,12 @@ public class ScintillaItem extends Item implements DyeableLeatherItem{
                     }
                     if (tag.contains("sv")) {
                         MutableComponent s1 = Component.translatable("tooltip.scintilla.saturation");
-                        MutableComponent s2 = s1.append(String.format("%.2f",tag.getFloat("sv")));
+                        MutableComponent s2 = s1.append(String.format("%.2f", tag.getFloat("sv")));
                         pTooltipComponents.add(s2.withStyle(ChatFormatting.DARK_GRAY));
                     }
                     if (tag.contains("md")) {
                         MutableComponent d1 = Component.translatable("tooltip.scintilla.max_durability");
-                        MutableComponent d2 = d1.append(String.valueOf(tag.getInt("md")-1));
+                        MutableComponent d2 = d1.append(String.valueOf(tag.getInt("md") - 1));
                         pTooltipComponents.add(d2.withStyle(ChatFormatting.DARK_GRAY));
                     }
                 } else {
@@ -203,12 +189,12 @@ public class ScintillaItem extends Item implements DyeableLeatherItem{
     }
 
     @Override
-    public Rarity getRarity(ItemStack pStack) {
+    public @NotNull Rarity getRarity(ItemStack pStack) {
         if (pStack.hasTag()) {
             CompoundTag tag = pStack.getTag();
-            int h = (tag.contains("hv")) ? tag.getInt("hv") : 2;
-            float s = (tag.contains("sv")) ? tag.getFloat("sv") : 0.4f;
-            int d = (tag.contains("md")) ? tag.getInt("md") : 9;
+            int         h   = (tag != null && tag.contains("hv")) ? tag.getInt("hv") : 2;
+            float       s   = (tag != null && tag.contains("sv")) ? tag.getFloat("sv") : 0.4f;
+            int         d   = (tag != null && tag.contains("md")) ? tag.getInt("md") : 9;
             if (h >= 3 && s >= 1.1f && d >= 16) {
                 if (h >= 7 && s >= 12.7f && d >= 64) {
                     if (h >= 9 && s >= 19.9f && d >= 256) {
@@ -222,7 +208,7 @@ public class ScintillaItem extends Item implements DyeableLeatherItem{
             } else {
                 return Rarity.COMMON;
             }
-        }else{
+        } else {
             return Rarity.COMMON;
         }
     }

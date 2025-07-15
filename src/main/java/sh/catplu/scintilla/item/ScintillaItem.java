@@ -1,18 +1,21 @@
 package sh.catplu.scintilla.item;
 
+import net.minecraft.ChatFormatting;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.DyeableLeatherItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 
+import java.util.List;
 import java.util.function.Consumer;
 
 import org.jetbrains.annotations.Nullable;
@@ -142,5 +145,85 @@ public class ScintillaItem extends Item implements DyeableLeatherItem{
     @Override
     public boolean isValidRepairItem(ItemStack pStack, ItemStack pRepairCandidate) {
         return pRepairCandidate.getItem() instanceof ShatterglassItem;
+    }
+
+    @Override
+    public void appendHoverText(ItemStack pStack, @org.jetbrains.annotations.Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
+        if (pStack.hasTag()) {
+            CompoundTag tag = pStack.getTag();
+            if (tag.contains("display")) {
+                CompoundTag display = tag.getCompound("display");
+                if (display.contains("dl")) {
+                    MutableComponent l1 = Component.translatable("tooltip.scintilla.left_dust");
+                    MutableComponent l2 = Component.translatable("item.scintilla." + display.getString("dl") + "_dust");
+                    MutableComponent l3 = l1.append(l2);
+                    pTooltipComponents.add(l3.withStyle(ChatFormatting.DARK_GRAY));
+                }
+                if (display.contains("dr")) {
+                    MutableComponent r1 = Component.translatable("tooltip.scintilla.right_dust");
+                    MutableComponent r2 = Component.translatable("item.scintilla." + display.getString("dr") + "_dust");
+                    MutableComponent r3 = r1.append(r2);
+                    pTooltipComponents.add(r3.withStyle(ChatFormatting.DARK_GRAY));
+                }
+                if (display.contains("bs") && display.contains("bm")) {
+                    MutableComponent b1 = Component.translatable("tooltip.scintilla.bottle");
+                    MutableComponent b2 = Component.translatable("item.scintilla."
+                                    + display.getString("bs")
+                                    + "_"
+                                    + display.getString("bm")
+                                    + "_bottle");
+                    MutableComponent b3 = b1.append(b2);
+                    pTooltipComponents.add(b3.withStyle(ChatFormatting.DARK_GRAY));
+                }
+            }
+            if (tag.contains("hv") || tag.contains("sv") || tag.contains("md")) {
+                if (Screen.hasShiftDown()) {
+                    if (tag.contains("hv")) {
+                        MutableComponent h1 = Component.translatable("tooltip.scintilla.nutrition");
+                        MutableComponent h2 = h1.append(String.valueOf(tag.getInt("hv")));
+                        pTooltipComponents.add(h2.withStyle(ChatFormatting.DARK_GRAY));
+                    }
+                    if (tag.contains("sv")) {
+                        MutableComponent s1 = Component.translatable("tooltip.scintilla.saturation");
+                        MutableComponent s2 = s1.append(String.format("%.2f",tag.getFloat("sv")));
+                        pTooltipComponents.add(s2.withStyle(ChatFormatting.DARK_GRAY));
+                    }
+                    if (tag.contains("md")) {
+                        MutableComponent d1 = Component.translatable("tooltip.scintilla.max_durability");
+                        MutableComponent d2 = d1.append(String.valueOf(tag.getInt("md")-1));
+                        pTooltipComponents.add(d2.withStyle(ChatFormatting.DARK_GRAY));
+                    }
+                } else {
+                    MutableComponent e1 = Component.translatable("tooltip.scintilla.expandable");
+                    pTooltipComponents.add(e1.withStyle(ChatFormatting.GRAY));
+                }
+            }
+        }
+        super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
+    }
+
+    @Override
+    public Rarity getRarity(ItemStack pStack) {
+        if (pStack.hasTag()) {
+            CompoundTag tag = pStack.getTag();
+            int h = (tag.contains("hv")) ? tag.getInt("hv") : 2;
+            float s = (tag.contains("sv")) ? tag.getFloat("sv") : 0.4f;
+            int d = (tag.contains("md")) ? tag.getInt("md") : 9;
+            if (h >= 3 && s >= 1.1f && d >= 16) {
+                if (h >= 7 && s >= 12.7f && d >= 64) {
+                    if (h >= 9 && s >= 19.9f && d >= 256) {
+                        return Rarity.EPIC;
+                    } else {
+                        return Rarity.RARE;
+                    }
+                } else {
+                    return Rarity.UNCOMMON;
+                }
+            } else {
+                return Rarity.COMMON;
+            }
+        }else{
+            return Rarity.COMMON;
+        }
     }
 }

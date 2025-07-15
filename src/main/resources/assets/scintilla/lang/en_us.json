@@ -16,6 +16,11 @@
   "item.scintilla.prismarine_dust": "Prismarine Powder",
   "item.scintilla.quartz_dust":     "Quartz Silica Dust",
   "item.scintilla.star_dust":       "Nether Stardust",
+  "item.scintilla.glowstone_dust":  "Glowstone Dust",
+  "item.scintilla.gunpowder_dust":  "Gunpowder",
+  "item.scintilla.redstone_dust":   "Redstone",
+  "item.scintilla.snow_dust":       "Snow",
+  "item.scintilla.sugar_dust":      "Sugar",
 
   "item.scintilla.diamond_glass_bottle" :   "Glass Diamond Bottle",
   "item.scintilla.diamond_emerald_bottle" : "Emerald Diamond Bottle",
@@ -85,5 +90,13 @@
   "tooltip.scintilla.t2durability": "Seems to have some small space warping abilities.",
   "tooltip.scintilla.t3durability": "Seems to have some decent space warping abilities.",
   "tooltip.scintilla.t4durability": "Seems to have some powerful space warping abilities.",
-  "tooltip.scintilla.t5durability": "Seems to have some extremely powerful space warping abilities. It's... difficult to hold."
+  "tooltip.scintilla.t5durability": "Seems to have some extremely powerful space warping abilities. It's... difficult to hold.",
+
+  "tooltip.scintilla.left_dust": "Left Dust: ",
+  "tooltip.scintilla.right_dust": "Right Dust: ",
+  "tooltip.scintilla.bottle": "Bottle: ",
+  "tooltip.scintilla.expandable": "+ Hold SHIFT for Stats",
+  "tooltip.scintilla.nutrition": "Hunger: ",
+  "tooltip.scintilla.saturation": "Saturation: ",
+  "tooltip.scintilla.max_durability": "Bottle Capacity: "
 }

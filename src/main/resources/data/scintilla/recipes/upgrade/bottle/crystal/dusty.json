@@ -1,0 +1,28 @@
+{
+  "type": "scintilla:color",
+  "group": "scintilla_upgrade_bottle",
+  "category": "misc",
+  "pattern": [
+    "X",
+    "U"
+  ],
+  "key": {
+    "U": {
+      "item": "scintilla:dusty_crystal_bottle"
+    },
+    "X": {
+      "item": "scintilla:scintilla"
+    }
+  },
+  "result": {
+    "item": "scintilla:scintilla",
+    "nbt": {
+      "md": 129,
+      "display": {
+        "bs": "dusty",
+        "bm": "crystal"
+      }
+    }
+  },
+  "color_slot": 0
+}

@@ -1,0 +1,28 @@
+{
+  "type": "scintilla:color",
+  "group": "scintilla_upgrade_bottle",
+  "category": "misc",
+  "pattern": [
+    "X",
+    "U"
+  ],
+  "key": {
+    "U": {
+      "item": "scintilla:star_end_bottle"
+    },
+    "X": {
+      "item": "scintilla:scintilla"
+    }
+  },
+  "result": {
+    "item": "scintilla:scintilla",
+    "nbt": {
+      "md": 257,
+      "display": {
+        "bs": "star",
+        "bm": "end"
+      }
+    }
+  },
+  "color_slot": 0
+}

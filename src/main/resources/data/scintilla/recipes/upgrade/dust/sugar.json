@@ -1,0 +1,28 @@
+{
+  "type": "scintilla:color",
+  "group": "scintilla_upgrade_dust_left",
+  "category": "misc",
+  "pattern": [
+    "UUU",
+    "UXU",
+    "UUU"
+  ],
+  "key": {
+    "U": {
+      "item": "minecraft:sugar"
+    },
+    "X": {
+      "item": "scintilla:scintilla"
+    }
+  },
+  "result": {
+    "item": "scintilla:scintilla",
+    "nbt": {
+      "hv": 2,
+      "display": {
+        "dl": "sugar"
+      }
+    }
+  },
+  "color_slot": 4
+}

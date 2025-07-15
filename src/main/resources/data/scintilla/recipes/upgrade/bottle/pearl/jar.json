@@ -1,0 +1,28 @@
+{
+  "type": "scintilla:color",
+  "group": "scintilla_upgrade_bottle",
+  "category": "misc",
+  "pattern": [
+    "X",
+    "U"
+  ],
+  "key": {
+    "U": {
+      "item": "scintilla:jar_pearl_bottle"
+    },
+    "X": {
+      "item": "scintilla:scintilla"
+    }
+  },
+  "result": {
+    "item": "scintilla:scintilla",
+    "nbt": {
+      "md": 33,
+      "display": {
+        "bs": "jar",
+        "bm": "pearl"
+      }
+    }
+  },
+  "color_slot": 0
+}

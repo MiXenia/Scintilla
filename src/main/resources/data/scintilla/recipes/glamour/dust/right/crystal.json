@@ -1,0 +1,29 @@
+{
+  "type": "scintilla:color",
+  "group": "scintilla_glamour_right_dust",
+  "category": "misc",
+  "pattern": [
+    "O ",
+    "XU"
+  ],
+  "key": {
+    "O": {
+      "tag": "forge:dyes"
+    },
+    "U": {
+      "item": "scintilla:crystal_dust"
+    },
+    "X": {
+      "item": "scintilla:scintilla"
+    }
+  },
+  "result": {
+    "item": "scintilla:scintilla",
+    "nbt": {
+      "display": {
+        "dr": "crystal"
+      }
+    }
+  },
+  "color_slot": 2
+}

@@ -1,0 +1,28 @@
+{
+  "type": "scintilla:color",
+  "group": "scintilla_upgrade_dust_left",
+  "category": "misc",
+  "pattern": [
+    "UUU",
+    "UXU",
+    "UUU"
+  ],
+  "key": {
+    "U": {
+      "item": "scintilla:diamond_dust"
+    },
+    "X": {
+      "item": "scintilla:scintilla"
+    }
+  },
+  "result": {
+    "item": "scintilla:scintilla",
+    "nbt": {
+      "hv": 4,
+      "display": {
+        "dl": "diamond"
+      }
+    }
+  },
+  "color_slot": 4
+}

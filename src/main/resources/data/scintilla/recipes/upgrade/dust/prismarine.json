@@ -1,0 +1,28 @@
+{
+  "type": "scintilla:color",
+  "group": "scintilla_upgrade_dust_right",
+  "category": "misc",
+  "pattern": [
+    "UUU",
+    "UXU",
+    "UUU"
+  ],
+  "key": {
+    "U": {
+      "item": "scintilla:prismarine_dust"
+    },
+    "X": {
+      "item": "scintilla:scintilla"
+    }
+  },
+  "result": {
+    "item": "scintilla:scintilla",
+    "nbt": {
+      "sv": 20.0,
+      "display": {
+        "dr": "prismarine"
+      }
+    }
+  },
+  "color_slot": 4
+}

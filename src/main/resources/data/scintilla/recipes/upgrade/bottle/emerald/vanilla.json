@@ -1,0 +1,28 @@
+{
+  "type": "scintilla:color",
+  "group": "scintilla_upgrade_bottle",
+  "category": "misc",
+  "pattern": [
+    "X",
+    "U"
+  ],
+  "key": {
+    "U": {
+      "item": "scintilla:vanilla_emerald_bottle"
+    },
+    "X": {
+      "item": "scintilla:scintilla"
+    }
+  },
+  "result": {
+    "item": "scintilla:scintilla",
+    "nbt": {
+      "md": 17,
+      "display": {
+        "bs": "vanilla",
+        "bm": "emerald"
+      }
+    }
+  },
+  "color_slot": 0
+}

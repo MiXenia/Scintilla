@@ -1,0 +1,28 @@
+{
+  "type": "scintilla:color",
+  "group": "scintilla_upgrade_dust_right",
+  "category": "misc",
+  "pattern": [
+    "UUU",
+    "UXU",
+    "UUU"
+  ],
+  "key": {
+    "U": {
+      "item": "scintilla:blaze_dust"
+    },
+    "X": {
+      "item": "scintilla:scintilla"
+    }
+  },
+  "result": {
+    "item": "scintilla:scintilla",
+    "nbt": {
+      "sv": 6.0,
+      "display": {
+        "dr": "blaze"
+      }
+    }
+  },
+  "color_slot": 4
+}

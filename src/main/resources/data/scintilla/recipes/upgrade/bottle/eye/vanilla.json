@@ -1,0 +1,28 @@
+{
+  "type": "scintilla:color",
+  "group": "scintilla_upgrade_bottle",
+  "category": "misc",
+  "pattern": [
+    "X",
+    "U"
+  ],
+  "key": {
+    "U": {
+      "item": "scintilla:vanilla_eye_bottle"
+    },
+    "X": {
+      "item": "scintilla:scintilla"
+    }
+  },
+  "result": {
+    "item": "scintilla:scintilla",
+    "nbt": {
+      "md": 65,
+      "display": {
+        "bs": "vanilla",
+        "bm": "eye"
+      }
+    }
+  },
+  "color_slot": 0
+}

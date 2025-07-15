@@ -1,0 +1,29 @@
+{
+  "type": "scintilla:color",
+  "group": "scintilla_glamour_left_dust",
+  "category": "misc",
+  "pattern": [
+    " O",
+    "UX"
+  ],
+  "key": {
+    "O": {
+      "tag": "forge:dyes"
+    },
+    "U": {
+      "item": "scintilla:quartz_dust"
+    },
+    "X": {
+      "item": "scintilla:scintilla"
+    }
+  },
+  "result": {
+    "item": "scintilla:scintilla",
+    "nbt": {
+      "display": {
+        "dl": "quartz"
+      }
+    }
+  },
+  "color_slot": 3
+}

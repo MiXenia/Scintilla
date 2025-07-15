@@ -1,0 +1,31 @@
+{
+  "type": "scintilla:color",
+  "group": "scintilla_glamour_bottle",
+  "category": "misc",
+  "pattern": [
+    "O",
+    "X",
+    "U"
+  ],
+  "key": {
+    "O": {
+      "tag": "forge:dyes"
+    },
+    "U": {
+      "item": "scintilla:heart_crystal_bottle"
+    },
+    "X": {
+      "item": "scintilla:scintilla"
+    }
+  },
+  "result": {
+    "item": "scintilla:scintilla",
+    "nbt": {
+      "display": {
+        "bs": "heart",
+        "bm": "crystal"
+      }
+    }
+  },
+  "color_slot": 1
+}

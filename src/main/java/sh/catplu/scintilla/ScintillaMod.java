@@ -2,15 +2,11 @@ package sh.catplu.scintilla;
 
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.world.item.DyeableLeatherItem;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ModelEvent;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -26,8 +22,6 @@ import sh.catplu.scintilla.model.ScintillaModelLoader;
 import sh.catplu.scintilla.recipes.ModRecipes;
 import sh.catplu.scintilla.item.ModCreativeModeTabs;
 import sh.catplu.scintilla.item.ModItems;
-import sh.catplu.scintilla.item.ScintillaItem;
-import sh.catplu.scintilla.item.ShatterglassItem;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(ScintillaMod.MOD_ID)
@@ -49,9 +43,9 @@ public class ScintillaMod
     //            output.accept(EXAMPLE_ITEM.get()); // Add the example item to the tab. For your own tabs, this method is preferred over the event
     //        }).build());
 
-    public ScintillaMod(FMLJavaModLoadingContext context)
+    public ScintillaMod()
     {
-        IEventBus modEventBus = context.getModEventBus();
+        @SuppressWarnings("removal") IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ModCreativeModeTabs.register(modEventBus);
         ModItems.register(modEventBus);
@@ -105,8 +99,8 @@ public class ScintillaMod
     @SubscribeEvent
     public void registerItemColors(RegisterColorHandlersEvent.@NotNull Item event)
     {
-        event.register((ItemColor) (itemStack, i) -> i > 0 ? -1 : ((DyeableLeatherItem) itemStack.getItem()).getColor(itemStack), ModItems.SHATTERGLASS.get());
-        event.register((ItemColor) (itemStack, i) -> i > 0 ? -1 : ((DyeableLeatherItem) itemStack.getItem()).getColor(itemStack), ModItems.SCINTILLA.get());
+        event.register((itemStack, i) -> i > 0 ? -1 : ((DyeableLeatherItem) itemStack.getItem()).getColor(itemStack), ModItems.SHATTERGLASS.get());
+        event.register((itemStack, i) -> i > 0 ? -1 : ((DyeableLeatherItem) itemStack.getItem()).getColor(itemStack), ModItems.SCINTILLA.get());
         //event.register((stack, layer) -> {
         //    if (layer == 0) {
         //        CompoundTag display = stack.getTagElement("Display");

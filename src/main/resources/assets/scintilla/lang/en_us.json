@@ -98,5 +98,7 @@
   "tooltip.scintilla.expandable": "+ Hold SHIFT for Stats",
   "tooltip.scintilla.nutrition": "Hunger: ",
   "tooltip.scintilla.saturation": "Saturation: ",
-  "tooltip.scintilla.max_durability": "Bottle Capacity: "
+  "tooltip.scintilla.max_durability": "Bottle Capacity: ",
+
+  "tooltip.scintilla.shatterglass_guide": "§8To obtain Shatterglass, smash any placed §dStained Glass Block §8with a §cBrick§8!"
 }

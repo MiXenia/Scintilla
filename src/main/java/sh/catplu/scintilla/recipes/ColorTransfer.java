@@ -27,28 +27,28 @@ import java.util.Map;
 import java.util.Set;
 
 public class ColorTransfer extends ShapedRecipe {
-    static int MAX_WIDTH = 3;
-    static int MAX_HEIGHT = 3;
-    private final String pGroup;
-    private final CraftingBookCategory pCategory;
-    private final int pWidth;
-    private final int pHeight;
+    static        int                     MAX_WIDTH              = 3;
+    static        int                     MAX_HEIGHT             = 3;
+    private final String                  pGroup;
+    private final CraftingBookCategory    pCategory;
+    private final int                     pWidth;
+    private final int                     pHeight;
     private final NonNullList<Ingredient> pRecipeItems;
-    private final ItemStack pResult;
-    private final boolean pShowNotification;
-    final int colorSourceSlot;
-    private int matchedColorSourceSlot = -1;
+    private final ItemStack               pResult;
+    private final boolean                 pShowNotification;
+    final         int                     colorSourceSlot;
+    private       int                     matchedColorSourceSlot = -1;
 
     public ColorTransfer(ResourceLocation pId, String pGroup, CraftingBookCategory pCategory, int pWidth, int pHeight, NonNullList<Ingredient> pRecipeItems, ItemStack pResult, boolean pShowNotification, int colorSourceSlot) {
         super(pId, pGroup, pCategory, pWidth, pHeight, pRecipeItems, pResult, pShowNotification);
-        this.pGroup = pGroup;
-        this.pCategory = pCategory;
-        this.pWidth = pWidth;
-        this.pHeight = pHeight;
-        this.pRecipeItems = pRecipeItems;
-        this.pResult = pResult;
+        this.pGroup            = pGroup;
+        this.pCategory         = pCategory;
+        this.pWidth            = pWidth;
+        this.pHeight           = pHeight;
+        this.pRecipeItems      = pRecipeItems;
+        this.pResult           = pResult;
         this.pShowNotification = pShowNotification;
-        this.colorSourceSlot = colorSourceSlot;
+        this.colorSourceSlot   = colorSourceSlot;
     }
 
     @Override
@@ -58,7 +58,7 @@ public class ColorTransfer extends ShapedRecipe {
         }
         for (int i = 0; i <= pInv.getWidth() - this.pWidth; ++i) {
             for (int j = 0; j <= pInv.getHeight() - this.pHeight; ++j) {
-                int slot = getColorSlot(i,j,pInv.getWidth(),pInv.getHeight());
+                int slot = getColorSlot(i, j, pInv.getWidth(), pInv.getHeight());
                 if (this.matches(pInv, i, j, false)) {
                     if (pInv.getItem(slot).hasTag()) {
                         this.matchedColorSourceSlot = slot;
@@ -74,8 +74,8 @@ public class ColorTransfer extends ShapedRecipe {
     private int getColorSlot(int i, int j, int width, int height) {
         int recipeX = this.colorSourceSlot % this.pWidth;
         int recipeY = this.colorSourceSlot / this.pWidth;
-        int gridX = i + recipeX;
-        int gridY = j + recipeY;
+        int gridX   = i + recipeX;
+        int gridY   = j + recipeY;
         return gridX + gridY * width;
     }
 
@@ -83,8 +83,8 @@ public class ColorTransfer extends ShapedRecipe {
         if (pMirrored) return false;
         for (int i = 0; i < pCraftingInventory.getWidth(); ++i) {
             for (int j = 0; j < pCraftingInventory.getHeight(); ++j) {
-                int k = i - pWidth;
-                int l = j - pHeight;
+                int        k          = i - pWidth;
+                int        l          = j - pHeight;
                 Ingredient ingredient = Ingredient.EMPTY;
                 if (k >= 0 && l >= 0 && k < this.pWidth && l < this.pHeight) {
                     ingredient = this.pRecipeItems.get(k + l * this.pWidth);
@@ -101,9 +101,9 @@ public class ColorTransfer extends ShapedRecipe {
 
     @Override
     public ItemStack assemble(CraftingContainer pContainer, RegistryAccess pRegistryAccess) {
-        ItemStack donor = pContainer.getItem(this.matchedColorSourceSlot);
+        ItemStack donor  = pContainer.getItem(this.matchedColorSourceSlot);
         ItemStack source = this.pResult.copy();
-        ItemStack output = NBTCopyUtil.mergeNbtPreservingExisting(donor,source);
+        ItemStack output = NBTCopyUtil.mergeNbtPreservingExisting(donor, source);
         return output;
     }
 
@@ -204,12 +204,12 @@ public class ColorTransfer extends ShapedRecipe {
 
     static NonNullList<Ingredient> dissolvePattern(String[] pPattern, Map<String, Ingredient> pKeys, int pPatternWidth, int pPatternHeight) {
         NonNullList<Ingredient> nonnulllist = NonNullList.withSize(pPatternWidth * pPatternHeight, Ingredient.EMPTY);
-        Set<String> set = Sets.newHashSet(pKeys.keySet());
+        Set<String>             set         = Sets.newHashSet(pKeys.keySet());
         set.remove(" ");
 
         for (int i = 0; i < pPattern.length; ++i) {
             for (int j = 0; j < pPattern[i].length(); ++j) {
-                String s = pPattern[i].substring(j, j + 1);
+                String     s          = pPattern[i].substring(j, j + 1);
                 Ingredient ingredient = (Ingredient) pKeys.get(s);
                 if (ingredient == null) {
                     throw new JsonSyntaxException("Pattern references symbol '" + s + "' but it's not defined in the key");
@@ -230,38 +230,39 @@ public class ColorTransfer extends ShapedRecipe {
     public static class Serializer implements RecipeSerializer<ColorTransfer> {
         public static final ColorTransfer.Serializer INSTANCE = new ColorTransfer.Serializer();
 
-        public static final ResourceLocation ID = ResourceLocation.fromNamespaceAndPath(ScintillaMod.MOD_ID, "color");
+        @SuppressWarnings("removal")
+        public static final ResourceLocation ID = new ResourceLocation(ScintillaMod.MOD_ID, "color");
 
         @Override
         public ColorTransfer fromJson(ResourceLocation pRecipeId, JsonObject pJson) {
-            String s = GsonHelper.getAsString(pJson, "group", "");
-            CraftingBookCategory craftingbookcategory = (CraftingBookCategory) CraftingBookCategory.CODEC.byName(GsonHelper.getAsString(pJson, "category", (String) null), CraftingBookCategory.MISC);
-            Map<String, Ingredient> map = ColorTransfer.keyFromJson(GsonHelper.getAsJsonObject(pJson, "key"));
-            String[] astring = ColorTransfer.shrink(ColorTransfer.patternFromJson(GsonHelper.getAsJsonArray(pJson, "pattern")));
-            int i = astring[0].length();
-            int j = astring.length;
-            NonNullList<Ingredient> nonnulllist = ColorTransfer.dissolvePattern(astring, map, i, j);
-            ItemStack itemstack = ColorTransfer.itemStackFromJson(GsonHelper.getAsJsonObject(pJson, "result"));
-            boolean flag = GsonHelper.getAsBoolean(pJson, "show_notification", true);
-            int colorslot = GsonHelper.getAsInt(pJson, "color_slot", 0);
+            String                  s                    = GsonHelper.getAsString(pJson, "group", "");
+            CraftingBookCategory    craftingbookcategory = (CraftingBookCategory) CraftingBookCategory.CODEC.byName(GsonHelper.getAsString(pJson, "category", (String) null), CraftingBookCategory.MISC);
+            Map<String, Ingredient> map                  = ColorTransfer.keyFromJson(GsonHelper.getAsJsonObject(pJson, "key"));
+            String[]                astring              = ColorTransfer.shrink(ColorTransfer.patternFromJson(GsonHelper.getAsJsonArray(pJson, "pattern")));
+            int                     i                    = astring[0].length();
+            int                     j                    = astring.length;
+            NonNullList<Ingredient> nonnulllist          = ColorTransfer.dissolvePattern(astring, map, i, j);
+            ItemStack               itemstack            = ColorTransfer.itemStackFromJson(GsonHelper.getAsJsonObject(pJson, "result"));
+            boolean                 flag                 = GsonHelper.getAsBoolean(pJson, "show_notification", true);
+            int                     colorslot            = GsonHelper.getAsInt(pJson, "color_slot", 0);
             return new ColorTransfer(pRecipeId, s, craftingbookcategory, i, j, nonnulllist, itemstack, flag, colorslot);
         }
 
         @Override
         public @Nullable ColorTransfer fromNetwork(ResourceLocation pRecipeId, FriendlyByteBuf pBuffer) {
-            int i = pBuffer.readVarInt();
-            int j = pBuffer.readVarInt();
-            String s = pBuffer.readUtf();
-            CraftingBookCategory craftingbookcategory = (CraftingBookCategory)pBuffer.readEnum(CraftingBookCategory.class);
-            NonNullList<Ingredient> nonnulllist = NonNullList.withSize(i * j, Ingredient.EMPTY);
+            int                     i                    = pBuffer.readVarInt();
+            int                     j                    = pBuffer.readVarInt();
+            String                  s                    = pBuffer.readUtf();
+            CraftingBookCategory    craftingbookcategory = (CraftingBookCategory) pBuffer.readEnum(CraftingBookCategory.class);
+            NonNullList<Ingredient> nonnulllist          = NonNullList.withSize(i * j, Ingredient.EMPTY);
 
-            for(int k = 0; k < nonnulllist.size(); ++k) {
+            for (int k = 0; k < nonnulllist.size(); ++k) {
                 nonnulllist.set(k, Ingredient.fromNetwork(pBuffer));
             }
 
             ItemStack itemstack = pBuffer.readItem();
-            boolean flag = pBuffer.readBoolean();
-            int colorslot = pBuffer.readInt();
+            boolean   flag      = pBuffer.readBoolean();
+            int       colorslot = pBuffer.readInt();
             return new ColorTransfer(pRecipeId, s, craftingbookcategory, i, j, nonnulllist, itemstack, flag, colorslot);
         }
 
@@ -272,7 +273,7 @@ public class ColorTransfer extends ShapedRecipe {
             pBuffer.writeUtf(pRecipe.pGroup);
             pBuffer.writeEnum(pRecipe.pCategory);
 
-            for(Ingredient ingredient : pRecipe.pRecipeItems) {
+            for (Ingredient ingredient : pRecipe.pRecipeItems) {
                 ingredient.toNetwork(pBuffer);
             }
 

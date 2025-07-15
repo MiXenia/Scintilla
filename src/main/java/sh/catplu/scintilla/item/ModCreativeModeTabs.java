@@ -16,7 +16,22 @@ public class ModCreativeModeTabs {
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, ScintillaMod.MOD_ID);
 
     public static final RegistryObject<CreativeModeTab> SCINTILLA_TAB = CREATIVE_MODE_TABS.register("scintilla_tab",
-            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.SHATTERGLASS.get()))
+            () -> CreativeModeTab.builder().icon(() -> {
+                        CompoundTag s5 = new CompoundTag();
+                        CompoundTag d5 = new CompoundTag();
+                        ItemStack i5 = new ItemStack(ModItems.SCINTILLA.get());
+                        d5.putString("bs","heart");
+                        d5.putString("bm","end");
+                        d5.putString("dl","snow");
+                        d5.putString("dr","diamond");
+                        d5.putInt("color",16755421);
+                        s5.putInt("md",257);
+                        s5.putInt("hv",10);
+                        s5.putFloat("sv",20.0f);
+                        s5.put("display",d5);
+                        i5.setTag(s5);
+                        return i5;
+                    })
                     .title(Component.translatable("creativetab.scintilla_tab"))
                     .displayItems((pParameters, pOutput) -> {
                         CompoundTag s0 = new CompoundTag();
@@ -159,14 +174,16 @@ public class ModCreativeModeTabs {
                         pOutput.accept(i7);
                         pOutput.accept(i8);
 
-                        CompoundTag sgd = new CompoundTag();
-                        CompoundTag sgt = new CompoundTag();
-                        sgd.putInt("color",16777215);
-                        sgt.put("display",sgd);
-                        ItemStack sg = new ItemStack(ModItems.SHATTERGLASS.get());
-                        sg.setTag(sgt);
+                        //CompoundTag sgd = new CompoundTag();
+                        //CompoundTag sgt = new CompoundTag();
+                        //sgd.putInt("color",16777215);
+                        //sgt.putBoolean("tut",true);
+                        //sgt.put("display",sgd);
+                        //ItemStack sg = new ItemStack(ModItems.SHATTERGLASS.get());
+                        //sg.setTag(sgt);
 
-                        pOutput.accept(sg);
+                        //pOutput.accept(sg);
+                        pOutput.accept(ModItems.SHATTERGLASS.get());
 
                         pOutput.accept(ModItems.DIAMOND_DUST.get());
                         pOutput.accept(ModItems.QUARTZ_DUST.get());

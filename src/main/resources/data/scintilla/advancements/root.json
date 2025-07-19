@@ -10,6 +10,7 @@
     "description": {
       "translate": "scintilla.advancements.root.description"
     },
+    "announce_to_chat": false,
     "background": "minecraft:textures/block/pink_concrete_powder.png"
   },
   "criteria": {

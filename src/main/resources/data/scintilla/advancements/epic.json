@@ -1,0 +1,63 @@
+{
+  "parent": "scintilla:cap_up_5",
+  "display": {
+    "icon": {
+      "item": "scintilla:scintilla",
+      "nbt": "{display:{color:15695267,dl:\"star\",dr:\"prismarine\",bs:\"heart\",bm:\"end\"}}"
+    },
+    "title": {
+      "translate": "scintilla.advancements.epic.title"
+    },
+    "description": {
+      "translate": "scintilla.advancements.epic.description"
+    },
+    "frame": "challenge",
+    "hidden": true
+  },
+  "criteria": {
+    "md": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "scintilla:scintilla"
+            ],
+            "nbt": "{md:257}"
+          }
+        ]
+      }
+    },
+    "hv": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "scintilla:scintilla"
+            ],
+            "nbt": "{hv:10}"
+          }
+        ]
+      }
+    },
+    "sv": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "scintilla:scintilla"
+            ],
+            "nbt": "{sv:20.0}"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    ["md"],
+    ["hv"],
+    ["sv"]
+  ]
+}

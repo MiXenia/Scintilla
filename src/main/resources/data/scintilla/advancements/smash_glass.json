@@ -1,0 +1,33 @@
+{
+  "parent": "scintilla:root",
+  "display": {
+    "icon": {
+      "item": "minecraft:brick"
+    },
+    "title": {
+      "translate": "scintilla.advancements.smash_glass.title"
+    },
+    "description": {
+      "translate": "scintilla.advancements.smash_glass.description"
+    }
+  },
+  "criteria": {
+    "smashing_glass": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "scintilla:shatterglass"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "scintilla:scintilla"
+    ]
+  }
+}

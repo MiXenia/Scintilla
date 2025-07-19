@@ -100,5 +100,82 @@
   "tooltip.scintilla.saturation": "Saturation: ",
   "tooltip.scintilla.max_durability": "Bottle Capacity: ",
 
-  "tooltip.scintilla.shatterglass_guide": "§8To obtain Shatterglass, smash any placed §dStained Glass Block §8with a §cBrick§8!"
+  "tooltip.scintilla.shatterglass_guide": "§8To obtain Shatterglass, smash any placed §dStained Glass Block §8with a §cBrick§8!§r",
+
+  "scintilla.advancements.root.title": "Path to Scintilla",
+  "scintilla.advancements.root.description": "A sweet treat from from the §dWeave of Noxlyte§a, fit for plushkin of any kind!",
+
+  "scintilla.advancements.smash_glass.title": "Rimeless Reason",
+  "scintilla.advancements.smash_glass.description": "Smash any placed stained glass block with a brick to obtain Shatterglass.",
+
+  "scintilla.advancements.secret_glass.title": "Hand over Faucet",
+  "scintilla.advancements.secret_glass.description": "Obtain Shatterglass without a brick.",
+
+  "scintilla.advancements.craft_first_scintilla.title": "First Time in Harlequin",
+  "scintilla.advancements.craft_first_scintilla.description": "Craft your first bottle of Scintilla.",
+
+  "scintilla.advancements.nut_up_1.title": "Patterns to Live In",
+  "scintilla.advancements.nut_up_1.description": "Upgrade the Hunger restoration of your Scintilla to level 2 using eight Diamond Dust.",
+
+  "scintilla.advancements.sat_up_1.title": "A Fustian Mystery",
+  "scintilla.advancements.sat_up_1.description": "Upgrade the Saturation restoration of your Scintilla to level 2 using eight Crushed Amethyst.",
+
+  "scintilla.advancements.cap_up_1.title": "Trading with Paper Leaves",
+  "scintilla.advancements.cap_up_1.description": "Upgrade the Capacity of your Scintilla bottle to level 2 using any Emerald Bottle, no dye needed.",
+
+  "scintilla.advancements.nut_up_2.title": "A Hero by Any Other Color",
+  "scintilla.advancements.nut_up_2.description": "Upgrade the Hunger restoration of your Scintilla to level 3 using eight Quartz Silica Dust.",
+
+  "scintilla.advancements.sat_up_2.title": "Harrowing Dawn Spellcasting",
+  "scintilla.advancements.sat_up_2.description": "Upgrade the Saturation restoration of your Scintilla to level 3 using eight Blaze Ash.",
+
+  "scintilla.advancements.cap_up_2.title": "One Map to Q'tenso, Please",
+  "scintilla.advancements.cap_up_2.description": "Upgrade the Capacity of your Scintilla bottle to level 3 using any Pearlescent Bottle, no dye needed.",
+
+  "scintilla.advancements.nut_up_3.title": "Silence in the Old Capital",
+  "scintilla.advancements.nut_up_3.description": "Upgrade the Hunger restoration of your Scintilla to level 4 using eight Echoic Earth.",
+
+  "scintilla.advancements.sat_up_3.title": "On Sands of Black and White",
+  "scintilla.advancements.sat_up_3.description": "Upgrade the Saturation restoration of your Scintilla to level 4 using eight Salt of the Sea.",
+
+  "scintilla.advancements.cap_up_3.title": "Between the 3rd and 4th Wall",
+  "scintilla.advancements.cap_up_3.description": "Upgrade the Capacity of your Scintilla bottle to level 4 using any Ender or Eye Bottle, no dye needed.",
+
+  "scintilla.advancements.nut_up_4.title": "Tacet Nox, Atrament Skies",
+  "scintilla.advancements.nut_up_4.description": "Upgrade the Hunger restoration of your Scintilla to max level using eight Nether Stardust.",
+
+  "scintilla.advancements.sat_up_4.title": "The Herringbone Special",
+  "scintilla.advancements.sat_up_4.description": "Upgrade the Saturation restoration of your Scintilla to max level using eight Prismarine Powder.",
+
+  "scintilla.advancements.cap_up_4.title": "A Rain that Never Ends",
+  "scintilla.advancements.cap_up_4.description": "Upgrade the Capacity of your Scintilla bottle to level 5 using any Crystalline Bottle, no dye needed.",
+
+  "scintilla.advancements.cap_up_5.title": "Via Ultima",
+  "scintilla.advancements.cap_up_5.description": "Upgrade the Capacity of your Scintilla bottle to max level using any Final Bottle, no dye needed.",
+
+  "scintilla.advancements.uncommon.title": "Fit for a Claw of Scintilla",
+  "scintilla.advancements.uncommon.description": "Upgrade your Scintilla beyond common levels.",
+
+  "scintilla.advancements.rare.title": "Dance on Shatterglass Dunes",
+  "scintilla.advancements.rare.description": "Upgrade your Scintilla until it nears perfection.",
+
+  "scintilla.advancements.epic.title": "Tomorrow, Tomorrow",
+  "scintilla.advancements.epic.description": "Fully Upgrade your Scintilla.",
+
+  "scintilla.advancements.glamour.title": "Not What It Seams",
+  "scintilla.advancements.glamour.description": "Using dye in your crafting table, you can change your Scintilla visually without changing its stats. Try using redstone, glowstone, or gunpowder as a cosmetic!",
+
+  "scintilla.advancements.depletion_challenge.title": "No Snow in Mezhr-Mezhr",
+  "scintilla.advancements.depletion_challenge.description": "Run out of Scintilla with a Final Bottle.",
+
+
+  "tetra.module.sword/needle_blade.item_name": "Needle",
+  "tetra.module.sword/needle_blade.name": "Needle",
+  "tetra.module.sword/needle_blade.description": "A replica of a §fGrand Relic§r from the semifictional §dWeave of Noxlyte§r.\n \nHas bizarre properties as a result of its semifictional nature.",
+  "tetra.module.sword/needle_blade.material_name": "%s needle",
+  "tetra.module.sword/needle_blade.prefix": "%s",
+
+  "tetra/schematic/sword/needle_blade.name": "Lovestitch",
+  "tetra/schematic/sword/needle_blade.description": "Replace the current sword blade with a facsimile of Lovestitch using semifictional smithing techniques.\n \nMaterial §fstat§r increases §fsomething?§r.",
+  "tetra/schematic/sword/needle_blade.slot1": "Needle material"
 }

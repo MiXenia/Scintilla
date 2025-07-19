@@ -1,0 +1,50 @@
+{
+  "parent": "scintilla:cap_up_2",
+  "display": {
+    "icon": {
+      "item": "scintilla:eye_dust"
+    },
+    "title": {
+      "translate": "scintilla.advancements.cap_up_3.title"
+    },
+    "description": {
+      "translate": "scintilla.advancements.cap_up_3.description"
+    }
+  },
+  "criteria": {
+    "smashing_glass": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "scintilla:scintilla"
+            ],
+            "nbt": "{md:65}"
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "scintilla:crystal_bottles/diamond_bottle",
+      "scintilla:crystal_bottles/dusty_bottle",
+      "scintilla:crystal_bottles/heart_bottle",
+      "scintilla:crystal_bottles/holy_bottle",
+      "scintilla:crystal_bottles/jar_bottle",
+      "scintilla:crystal_bottles/star_bottle",
+      "scintilla:crystal_bottles/vanilla_bottle",
+      "scintilla:crystal_bottles/vial_bottle",
+
+      "scintilla:upgrade/bottle/crystal/diamond",
+      "scintilla:upgrade/bottle/crystal/dusty",
+      "scintilla:upgrade/bottle/crystal/heart",
+      "scintilla:upgrade/bottle/crystal/holy",
+      "scintilla:upgrade/bottle/crystal/jar",
+      "scintilla:upgrade/bottle/crystal/star",
+      "scintilla:upgrade/bottle/crystal/vanilla",
+      "scintilla:upgrade/bottle/crystal/vial"
+    ]
+  }
+}

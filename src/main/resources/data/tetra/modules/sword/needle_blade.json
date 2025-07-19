@@ -1,0 +1,50 @@
+{
+  "replace": true,
+  "slots": [ "sword/blade" ],
+  "type": "tetra:basic_major_module",
+  "improvements": [
+    "tetra:sword/rapier_blade/",
+    "tetra:sword/shared_blade/",
+    "tetra:sword/shared/",
+    "tetra:shared/"
+  ],
+  "variants": [
+    {
+      "materials": ["tetra:fabric/","tetra:fibre/"],
+      "key": "needle_blade/",
+      "aspects": {
+        "edged_weapon": 2,
+        "breakable": 2
+      },
+      "attributes": {
+        "generic.attack_speed": 0,
+        "generic.attack_damage": 0
+      },
+      "effects": {
+        "sweeping": 2,
+        "truesweep": 1
+      },
+      "durability": -22,
+      "tags": [ "forge:swords" ],
+      "extract": {
+        "primaryAttributes": {
+          "generic.attack_speed": 1
+        },
+        "tertiaryAttributes": {
+          "generic.attack_damage": 1.5
+        },
+        "durability": 0.5,
+        "integrity": -1,
+        "magicCapacity": 2.2,
+        "glyph": {
+          "textureLocation": "scintilla:textures/item/tetra/scintillant_glyph.png",
+          "textureX": 0
+        },
+        "availableTextures": [ "tip" ],
+        "models": [{
+          "location": "scintilla:item/tetra/needle/"
+        }]
+      }
+    }
+  ]
+}

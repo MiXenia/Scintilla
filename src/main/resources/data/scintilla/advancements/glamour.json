@@ -1,0 +1,104 @@
+{
+  "parent": "scintilla:craft_first_scintilla",
+  "display": {
+    "icon": {
+      "item": "scintilla:scintilla",
+      "nbt": "{display:{color:15695267,dl:\"redstone\",dr:\"glowstone\",bs:\"dusty\",bm:\"glass\"}}"
+    },
+    "title": {
+      "translate": "scintilla.advancements.glamour.title"
+    },
+    "description": {
+      "translate": "scintilla.advancements.glamour.description"
+    },
+    "frame": "goal"
+  },
+  "criteria": {
+    "rl": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "scintilla:scintilla"
+            ],
+            "nbt": "{display:{dl:\"redstone\"}}"
+          }
+        ]
+      }
+    },
+    "rr": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "scintilla:scintilla"
+            ],
+            "nbt": "{display:{dr:\"redstone\"}}"
+          }
+        ]
+      }
+    },
+    "gl": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "scintilla:scintilla"
+            ],
+            "nbt": "{display:{dl:\"glowstone\"}}"
+          }
+        ]
+      }
+    },
+    "gr": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "scintilla:scintilla"
+            ],
+            "nbt": "{display:{dr:\"glowstone\"}}"
+          }
+        ]
+      }
+    },
+    "pl": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "scintilla:scintilla"
+            ],
+            "nbt": "{display:{dl:\"gunpowder\"}}"
+          }
+        ]
+      }
+    },
+    "pr": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "scintilla:scintilla"
+            ],
+            "nbt": "{display:{dr:\"gunpowder\"}}"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    ["rl",
+    "rr",
+    "gl",
+    "gr",
+    "pl",
+    "pr"]
+  ]
+}

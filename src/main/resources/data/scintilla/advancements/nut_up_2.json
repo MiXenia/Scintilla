@@ -1,0 +1,34 @@
+{
+  "parent": "scintilla:nut_up_1",
+  "display": {
+    "icon": {
+      "item": "scintilla:quartz_dust"
+    },
+    "title": {
+      "translate": "scintilla.advancements.nut_up_2.title"
+    },
+    "description": {
+      "translate": "scintilla.advancements.nut_up_2.description"
+    }
+  },
+  "criteria": {
+    "smashing_glass": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "scintilla:scintilla"
+            ],
+            "nbt": "{hv:6}"
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "scintilla:upgrade/dust/echo"
+    ]
+  }
+}

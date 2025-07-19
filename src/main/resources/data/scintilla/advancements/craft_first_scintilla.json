@@ -1,0 +1,183 @@
+{
+  "parent": "scintilla:smash_glass",
+  "display": {
+    "icon": {
+      "item": "scintilla:scintilla",
+      "nbt": "{display:{color:15695267,dl:\"sugar\",dr:\"snow\",bs:\"vanilla\",bm:\"glass\"}}"
+    },
+    "title": {
+      "translate": "scintilla.advancements.craft_first_scintilla.title"
+    },
+    "description": {
+      "translate": "scintilla.advancements.craft_first_scintilla.description"
+    },
+    "frame": "goal"
+  },
+  "criteria": {
+    "smashing_glass": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "scintilla:scintilla"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "scintilla:dust_grinding/amethyst_dust",
+      "scintilla:dust_grinding/blaze_dust",
+      "scintilla:dust_grinding/crystal_dust",
+      "scintilla:dust_grinding/diamond_dust",
+      "scintilla:dust_grinding/echo_dust",
+      "scintilla:dust_grinding/emerald_dust",
+      "scintilla:dust_grinding/end_dust",
+      "scintilla:dust_grinding/eye_dust",
+      "scintilla:dust_grinding/glass_dust",
+      "scintilla:dust_grinding/hots_dust",
+      "scintilla:dust_grinding/pearl_dust",
+      "scintilla:dust_grinding/prismarine_dust",
+      "scintilla:dust_grinding/quartz_dust",
+      "scintilla:dust_grinding/star_dust",
+
+      "scintilla:glass_bottles/diamond_bottle",
+      "scintilla:glass_bottles/dusty_bottle",
+      "scintilla:glass_bottles/heart_bottle",
+      "scintilla:glass_bottles/holy_bottle",
+      "scintilla:glass_bottles/jar_bottle",
+      "scintilla:glass_bottles/star_bottle",
+      "scintilla:glass_bottles/vanilla_bottle",
+      "scintilla:glass_bottles/vial_bottle",
+
+      "scintilla:emerald_bottles/diamond_bottle",
+      "scintilla:emerald_bottles/dusty_bottle",
+      "scintilla:emerald_bottles/heart_bottle",
+      "scintilla:emerald_bottles/holy_bottle",
+      "scintilla:emerald_bottles/jar_bottle",
+      "scintilla:emerald_bottles/star_bottle",
+      "scintilla:emerald_bottles/vanilla_bottle",
+      "scintilla:emerald_bottles/vial_bottle",
+
+      "scintilla:upgrade/bottle/glass/diamond",
+      "scintilla:upgrade/bottle/glass/dusty",
+      "scintilla:upgrade/bottle/glass/heart",
+      "scintilla:upgrade/bottle/glass/holy",
+      "scintilla:upgrade/bottle/glass/jar",
+      "scintilla:upgrade/bottle/glass/star",
+      "scintilla:upgrade/bottle/glass/vanilla",
+      "scintilla:upgrade/bottle/glass/vial",
+
+      "scintilla:upgrade/bottle/emerald/diamond",
+      "scintilla:upgrade/bottle/emerald/dusty",
+      "scintilla:upgrade/bottle/emerald/heart",
+      "scintilla:upgrade/bottle/emerald/holy",
+      "scintilla:upgrade/bottle/emerald/jar",
+      "scintilla:upgrade/bottle/emerald/star",
+      "scintilla:upgrade/bottle/emerald/vanilla",
+      "scintilla:upgrade/bottle/emerald/vial",
+
+      "scintilla:upgrade/dust/sugar",
+      "scintilla:upgrade/dust/snow",
+      "scintilla:upgrade/dust/amethyst",
+      "scintilla:upgrade/dust/diamond",
+
+      "scintilla:glamour/bottle/glass/diamond",
+      "scintilla:glamour/bottle/glass/dusty",
+      "scintilla:glamour/bottle/glass/heart",
+      "scintilla:glamour/bottle/glass/holy",
+      "scintilla:glamour/bottle/glass/jar",
+      "scintilla:glamour/bottle/glass/star",
+      "scintilla:glamour/bottle/glass/vanilla",
+      "scintilla:glamour/bottle/glass/vial",
+
+      "scintilla:glamour/bottle/emerald/diamond",
+      "scintilla:glamour/bottle/emerald/dusty",
+      "scintilla:glamour/bottle/emerald/heart",
+      "scintilla:glamour/bottle/emerald/holy",
+      "scintilla:glamour/bottle/emerald/jar",
+      "scintilla:glamour/bottle/emerald/star",
+      "scintilla:glamour/bottle/emerald/vanilla",
+      "scintilla:glamour/bottle/emerald/vial",
+
+      "scintilla:glamour/bottle/pearl/diamond",
+      "scintilla:glamour/bottle/pearl/dusty",
+      "scintilla:glamour/bottle/pearl/heart",
+      "scintilla:glamour/bottle/pearl/holy",
+      "scintilla:glamour/bottle/pearl/jar",
+      "scintilla:glamour/bottle/pearl/star",
+      "scintilla:glamour/bottle/pearl/vanilla",
+      "scintilla:glamour/bottle/pearl/vial",
+
+      "scintilla:glamour/bottle/eye/diamond",
+      "scintilla:glamour/bottle/eye/dusty",
+      "scintilla:glamour/bottle/eye/heart",
+      "scintilla:glamour/bottle/eye/holy",
+      "scintilla:glamour/bottle/eye/jar",
+      "scintilla:glamour/bottle/eye/star",
+      "scintilla:glamour/bottle/eye/vanilla",
+      "scintilla:glamour/bottle/eye/vial",
+
+      "scintilla:glamour/bottle/crystal/diamond",
+      "scintilla:glamour/bottle/crystal/dusty",
+      "scintilla:glamour/bottle/crystal/heart",
+      "scintilla:glamour/bottle/crystal/holy",
+      "scintilla:glamour/bottle/crystal/jar",
+      "scintilla:glamour/bottle/crystal/star",
+      "scintilla:glamour/bottle/crystal/vanilla",
+      "scintilla:glamour/bottle/crystal/vial",
+
+      "scintilla:glamour/bottle/end/diamond",
+      "scintilla:glamour/bottle/end/dusty",
+      "scintilla:glamour/bottle/end/heart",
+      "scintilla:glamour/bottle/end/holy",
+      "scintilla:glamour/bottle/end/jar",
+      "scintilla:glamour/bottle/end/star",
+      "scintilla:glamour/bottle/end/vanilla",
+      "scintilla:glamour/bottle/end/vial",
+
+      "scintilla:glamour/dust/left/amethyst",
+      "scintilla:glamour/dust/left/blaze",
+      "scintilla:glamour/dust/left/crystal",
+      "scintilla:glamour/dust/left/diamond",
+      "scintilla:glamour/dust/left/echo",
+      "scintilla:glamour/dust/left/emerald",
+      "scintilla:glamour/dust/left/end",
+      "scintilla:glamour/dust/left/eye",
+      "scintilla:glamour/dust/left/glass",
+      "scintilla:glamour/dust/left/glowstone",
+      "scintilla:glamour/dust/left/gunpowder",
+      "scintilla:glamour/dust/left/hots",
+      "scintilla:glamour/dust/left/pearl",
+      "scintilla:glamour/dust/left/prismarine",
+      "scintilla:glamour/dust/left/quartz",
+      "scintilla:glamour/dust/left/redstone",
+      "scintilla:glamour/dust/left/snow",
+      "scintilla:glamour/dust/left/star",
+      "scintilla:glamour/dust/left/sugar",
+
+      "scintilla:glamour/dust/right/amethyst",
+      "scintilla:glamour/dust/right/blaze",
+      "scintilla:glamour/dust/right/crystal",
+      "scintilla:glamour/dust/right/diamond",
+      "scintilla:glamour/dust/right/echo",
+      "scintilla:glamour/dust/right/emerald",
+      "scintilla:glamour/dust/right/end",
+      "scintilla:glamour/dust/right/eye",
+      "scintilla:glamour/dust/right/glass",
+      "scintilla:glamour/dust/right/glowstone",
+      "scintilla:glamour/dust/right/gunpowder",
+      "scintilla:glamour/dust/right/hots",
+      "scintilla:glamour/dust/right/pearl",
+      "scintilla:glamour/dust/right/prismarine",
+      "scintilla:glamour/dust/right/quartz",
+      "scintilla:glamour/dust/right/redstone",
+      "scintilla:glamour/dust/right/snow",
+      "scintilla:glamour/dust/right/star",
+      "scintilla:glamour/dust/right/sugar"
+    ]
+  }
+}

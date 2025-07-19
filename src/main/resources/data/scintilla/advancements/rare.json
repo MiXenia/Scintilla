@@ -1,0 +1,63 @@
+{
+  "parent": "scintilla:cap_up_3",
+  "display": {
+    "icon": {
+      "item": "scintilla:scintilla",
+      "nbt": "{display:{color:15695267,dl:\"echo\",dr:\"hots\",bs:\"holy\",bm:\"eye\"}}"
+    },
+    "title": {
+      "translate": "scintilla.advancements.rare.title"
+    },
+    "description": {
+      "translate": "scintilla.advancements.rare.description"
+    },
+    "frame": "goal",
+    "hidden": true
+  },
+  "criteria": {
+    "md": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "scintilla:scintilla"
+            ],
+            "nbt": "{md:65}"
+          }
+        ]
+      }
+    },
+    "hv": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "scintilla:scintilla"
+            ],
+            "nbt": "{hv:8}"
+          }
+        ]
+      }
+    },
+    "sv": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "scintilla:scintilla"
+            ],
+            "nbt": "{sv:12.5}"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    ["md"],
+    ["hv"],
+    ["sv"]
+  ]
+}

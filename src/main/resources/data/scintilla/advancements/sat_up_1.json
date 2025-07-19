@@ -1,0 +1,34 @@
+{
+  "parent": "scintilla:craft_first_scintilla",
+  "display": {
+    "icon": {
+      "item": "scintilla:amethyst_dust"
+    },
+    "title": {
+      "translate": "scintilla.advancements.sat_up_1.title"
+    },
+    "description": {
+      "translate": "scintilla.advancements.sat_up_1.description"
+    }
+  },
+  "criteria": {
+    "smashing_glass": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "scintilla:scintilla"
+            ],
+            "nbt": "{sv:1.2}"
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "scintilla:upgrade/dust/blaze"
+    ]
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "parent": "scintilla:cap_up_1",
+  "display": {
+    "icon": {
+      "item": "scintilla:scintilla",
+      "nbt": "{display:{color:15695267,dl:\"diamond\",dr:\"amethyst\",bs:\"star\",bm:\"emerald\"}}"
+    },
+    "title": {
+      "translate": "scintilla.advancements.uncommon.title"
+    },
+    "description": {
+      "translate": "scintilla.advancements.uncommon.description"
+    },
+    "frame": "goal",
+    "hidden": true
+  },
+  "criteria": {
+    "md": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "scintilla:scintilla"
+            ],
+            "nbt": "{md:17}"
+          }
+        ]
+      }
+    },
+    "hv": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "scintilla:scintilla"
+            ],
+            "nbt": "{hv:4}"
+          }
+        ]
+      }
+    },
+    "sv": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "scintilla:scintilla"
+            ],
+            "nbt": "{sv:1.2}"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    ["md"],
+    ["hv"],
+    ["sv"]
+  ]
+}

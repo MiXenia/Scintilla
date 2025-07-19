@@ -1,0 +1,29 @@
+{
+  "parent": "scintilla:sat_up_3",
+  "display": {
+    "icon": {
+      "item": "scintilla:prismarine_dust"
+    },
+    "title": {
+      "translate": "scintilla.advancements.sat_up_4.title"
+    },
+    "description": {
+      "translate": "scintilla.advancements.sat_up_4.description"
+    }
+  },
+  "criteria": {
+    "smashing_glass": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "scintilla:scintilla"
+            ],
+            "nbt": "{sv:20.0}"
+          }
+        ]
+      }
+    }
+  }
+}

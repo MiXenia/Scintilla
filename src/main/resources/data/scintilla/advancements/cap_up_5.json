@@ -1,0 +1,29 @@
+{
+  "parent": "scintilla:cap_up_4",
+  "display": {
+    "icon": {
+      "item": "scintilla:end_dust"
+    },
+    "title": {
+      "translate": "scintilla.advancements.cap_up_5.title"
+    },
+    "description": {
+      "translate": "scintilla.advancements.cap_up_5.description"
+    }
+  },
+  "criteria": {
+    "smashing_glass": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "scintilla:scintilla"
+            ],
+            "nbt": "{md:257}"
+          }
+        ]
+      }
+    }
+  }
+}

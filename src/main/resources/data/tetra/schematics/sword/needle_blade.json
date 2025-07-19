@@ -1,0 +1,18 @@
+{
+  "replace": true,
+  "slots": [ "sword/blade" ],
+  "materialSlotCount": 1,
+  "displayType": "major",
+  "glyph": {
+    "textureLocation": "scintilla:textures/item/tetra/scintillant_glyph.png",
+    "textureX": 0
+  },
+  "outcomes": [
+    {
+      "materials": [ "tetra:fabric/","tetra:fibre/" ],
+      "countFactor": 8,
+      "moduleKey": "sword/needle_blade",
+      "moduleVariant": "needle_blade/"
+    }
+  ]
+}

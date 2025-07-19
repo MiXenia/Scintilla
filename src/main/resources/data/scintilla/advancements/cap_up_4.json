@@ -1,0 +1,50 @@
+{
+  "parent": "scintilla:cap_up_3",
+  "display": {
+    "icon": {
+      "item": "scintilla:crystal_dust"
+    },
+    "title": {
+      "translate": "scintilla.advancements.cap_up_4.title"
+    },
+    "description": {
+      "translate": "scintilla.advancements.cap_up_4.description"
+    }
+  },
+  "criteria": {
+    "smashing_glass": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "scintilla:scintilla"
+            ],
+            "nbt": "{md:129}"
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "scintilla:end_bottles/diamond_bottle",
+      "scintilla:end_bottles/dusty_bottle",
+      "scintilla:end_bottles/heart_bottle",
+      "scintilla:end_bottles/holy_bottle",
+      "scintilla:end_bottles/jar_bottle",
+      "scintilla:end_bottles/star_bottle",
+      "scintilla:end_bottles/vanilla_bottle",
+      "scintilla:end_bottles/vial_bottle",
+
+      "scintilla:upgrade/bottle/end/diamond",
+      "scintilla:upgrade/bottle/end/dusty",
+      "scintilla:upgrade/bottle/end/heart",
+      "scintilla:upgrade/bottle/end/holy",
+      "scintilla:upgrade/bottle/end/jar",
+      "scintilla:upgrade/bottle/end/star",
+      "scintilla:upgrade/bottle/end/vanilla",
+      "scintilla:upgrade/bottle/end/vial"
+    ]
+  }
+}

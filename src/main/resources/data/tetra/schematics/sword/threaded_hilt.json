@@ -1,0 +1,23 @@
+{
+  "replace": true,
+  "slots": [
+    "sword/hilt"
+  ],
+  "materialSlotCount": 1,
+  "displayType": "major",
+  "requirement": {
+    "type": "tetra:locked",
+    "key": "tetra:sword/threaded_hilt"
+  },
+  "glyph": {
+    "textureLocation": "scintilla:textures/item/tetra/scintillant_glyph.png",
+    "textureX": 16
+  },
+  "outcomes": [
+    {
+      "materials": [ "tetra:fabric/","tetra:fibre/", "tetra:wood/", "tetra:metal/", "tetra:bone/", "tetra:rods/"],
+      "moduleKey": "sword/threaded_hilt",
+      "moduleVariant": "threaded_hilt/"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "schematics": ["tetra:sword/needle_blade","tetra:sword/threaded_hilt"],
+  "block": {
+    "block": "scintilla:frailily"
+  }
+}

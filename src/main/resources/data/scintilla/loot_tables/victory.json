@@ -1,0 +1,14 @@
+{
+  "pools": [
+    {
+      "name": "winner",
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "item",
+          "name": "scintilla:frailily"
+        }
+      ]
+    }
+  ]
+}

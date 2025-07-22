@@ -71,6 +71,9 @@
   "item.scintilla.vial_crystal_bottle" :    "Crystalline Vial",
   "item.scintilla.vial_end_bottle" :        "Final Vial",
 
+  "block.scintilla.frailily": "Preserved Frailily",
+  "block.scintilla.potted_frailily": "Imagination Manifest, Preserved and Potted",
+
   "creativetab.scintilla_tab":      "Scintilla",
 
   "tooltip.scintilla.t0nutrition": "About as filling as a cookie... somehow.",
@@ -175,7 +178,18 @@
   "tetra.module.sword/needle_blade.material_name": "%s needle",
   "tetra.module.sword/needle_blade.prefix": "%s",
 
-  "tetra/schematic/sword/needle_blade.name": "Lovestitch",
-  "tetra/schematic/sword/needle_blade.description": "Replace the current sword blade with a facsimile of Lovestitch using semifictional smithing techniques.\n \nMaterial §fstat§r increases §fsomething?§r.",
-  "tetra/schematic/sword/needle_blade.slot1": "Needle material"
+  "tetra/schematic/sword/needle_blade.name": "Lovestitch Blade",
+  "tetra/schematic/sword/needle_blade.description": "That flower...\n \nReplace the current sword blade with a facsimile of Lovestitch using semifictional smithing techniques.\n \nMaterial §fFlexibility§r increases §fDamage§r... somehow.",
+  "tetra/schematic/sword/needle_blade.slot1": "Needle material",
+  "tetra.unlock.tetra.sword/needle_blade.name": "flower from a land of semifiction in order to",
+
+  "tetra.module.sword/threaded_hilt.name": "Threaded Hilt",
+  "tetra.module.sword/threaded_hilt.description": "A replica of the unique hilt of a §fGrand Relic§r from the semifictional §dWeave of Noxlyte§r.",
+  "tetra.module.sword/threaded_hilt.material_name": "%s threaded hilt",
+  "tetra.module.sword/threaded_hilt.prefix": "%s",
+
+  "tetra/schematic/sword/threaded_hilt.name": "Threaded Hilt",
+  "tetra/schematic/sword/threaded_hilt.description": "That flower...\n \nReplace the current hilt with a handle befitting Lovestitch using semifictional smithing techniques.",
+  "tetra/schematic/sword/threaded_hilt.slot1": "Hilt material",
+  "tetra.unlock.tetra.sword/threaded_hilt.name": "flower from a land of semifiction in order to"
 }

@@ -3,7 +3,7 @@
   "slots": [ "sword/blade" ],
   "type": "tetra:basic_major_module",
   "improvements": [
-    "tetra:sword/rapier_blade/",
+    "tetra:sword/needle_blade/",
     "tetra:sword/shared_blade/",
     "tetra:sword/shared/",
     "tetra:shared/"
@@ -27,8 +27,8 @@
       "durability": -22,
       "tags": [ "forge:swords" ],
       "extract": {
-        "primaryAttributes": {
-          "generic.attack_speed": 1
+        "secondaryAttributes": {
+          "generic.attack_speed": 0.5
         },
         "tertiaryAttributes": {
           "generic.attack_damage": 1.5

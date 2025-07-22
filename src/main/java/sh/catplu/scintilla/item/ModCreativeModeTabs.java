@@ -10,6 +10,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 import sh.catplu.scintilla.ScintillaMod;
+import sh.catplu.scintilla.block.ModBlocks;
 
 public class ModCreativeModeTabs {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS =
@@ -255,6 +256,9 @@ public class ModCreativeModeTabs {
                         pOutput.accept(ModItems.STAR_END_BOTTLE.get());
                         pOutput.accept(ModItems.VANILLA_END_BOTTLE.get());
                         pOutput.accept(ModItems.VIAL_END_BOTTLE.get());
+
+//                        pOutput.accept(ModBlocks.FRAILILY.get());
+//                        pOutput.accept(ModBlocks.POTTED_FRAILILY.get());
 
                     })
                     .build());

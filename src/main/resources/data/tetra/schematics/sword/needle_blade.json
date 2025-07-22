@@ -3,6 +3,10 @@
   "slots": [ "sword/blade" ],
   "materialSlotCount": 1,
   "displayType": "major",
+  "requirement": {
+    "type": "tetra:locked",
+    "key": "tetra:sword/needle_blade"
+  },
   "glyph": {
     "textureLocation": "scintilla:textures/item/tetra/scintillant_glyph.png",
     "textureX": 0

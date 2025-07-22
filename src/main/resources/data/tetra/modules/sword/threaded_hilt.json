@@ -1,0 +1,41 @@
+{
+  "replace": true,
+  "slots": [ "sword/hilt" ],
+  "type": "tetra:basic_major_module",
+  "renderLayer": "lower",
+  "improvements": [
+    "tetra:sword/threaded_hilt/",
+    "tetra:sword/shared_hilt/",
+    "tetra:sword/shared/",
+    "tetra:shared/"
+  ],
+  "variants": [
+    {
+      "materials": ["tetra:fabric/","tetra:fibre/", "tetra:wood/", "tetra:metal/", "tetra:bone/", "tetra:rods/" ],
+      "key": "threaded_hilt/",
+      "attributes": {
+        "generic.attack_speed": -0.22
+      },
+      "aspects": {
+        "edgedWeapon": 2,
+        "breakable": 2
+      },
+      "durability": 22,
+      "integrity": 1,
+      "extract": {
+        "secondaryAttributes": {
+          "generic.attack_speed": -0.2
+        },
+        "durability": 0.3,
+        "integrity": 1.2,
+        "magicCapacity": 2.2,
+        "glyph": {
+          "textureLocation": "scintilla:textures/item/tetra/scintillant_glyph.png",
+          "textureX": 16
+        },
+        "availableTextures": [ "default", "metal", "shiny" , "wooden"],
+        "models": [ { "location": "scintilla:item/tetra/loop/" } ]
+      }
+    }
+  ]
+}

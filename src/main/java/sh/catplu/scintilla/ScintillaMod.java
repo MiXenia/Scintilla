@@ -3,6 +3,8 @@ package sh.catplu.scintilla;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.item.DyeableLeatherItem;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ModelEvent;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
@@ -17,6 +19,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
+import sh.catplu.scintilla.block.ModBlocks;
 import sh.catplu.scintilla.loot.ModLoot;
 import sh.catplu.scintilla.model.ScintillaModelLoader;
 import sh.catplu.scintilla.recipes.ModRecipes;
@@ -49,6 +52,7 @@ public class ScintillaMod
 
         ModCreativeModeTabs.register(modEventBus);
         ModItems.register(modEventBus);
+        ModBlocks.register(modEventBus);
         ModRecipes.register(modEventBus);
         ModLoot.register(modEventBus);
         // Register the commonSetup method for modloading
@@ -71,7 +75,7 @@ public class ScintillaMod
     private void commonSetup(final FMLCommonSetupEvent event)
     {
         // Some common setup code
-        LOGGER.info("HELLO FROM COMMON SETUP");
+        //LOGGER.info("HELLO FROM COMMON SETUP");
 
         //if (Config.logDirtBlock)
         //    LOGGER.info("DIRT BLOCK >> {}", ForgeRegistries.BLOCKS.getKey(Blocks.DIRT));
@@ -79,6 +83,9 @@ public class ScintillaMod
         //LOGGER.info(Config.magicNumberIntroduction + Config.magicNumber);
 
         //Config.items.forEach((item) -> LOGGER.info("ITEM >> {}", item.toString()));
+        event.enqueueWork(() -> {
+            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.FRAILILY.getId(), ModBlocks.POTTED_FRAILILY);
+        });
     }
 
     // Add the example block item to the building blocks tab

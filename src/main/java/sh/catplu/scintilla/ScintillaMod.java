@@ -66,7 +66,6 @@ public class ScintillaMod
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
-        modEventBus.addListener(this::registerItemColors);
 
         // Register our mod's ForgeConfigSpec so that Forge can create and load the config file for us
         //context.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
@@ -103,20 +102,6 @@ public class ScintillaMod
         LOGGER.info("HELLO from server starting");
     }
 
-    @SubscribeEvent
-    public void registerItemColors(RegisterColorHandlersEvent.@NotNull Item event)
-    {
-        event.register((itemStack, i) -> i > 0 ? -1 : ((DyeableLeatherItem) itemStack.getItem()).getColor(itemStack), ModItems.SHATTERGLASS.get());
-        event.register((itemStack, i) -> i > 0 ? -1 : ((DyeableLeatherItem) itemStack.getItem()).getColor(itemStack), ModItems.SCINTILLA.get());
-        //event.register((stack, layer) -> {
-        //    if (layer == 0) {
-        //        CompoundTag display = stack.getTagElement("Display");
-        //        return (display != null && display.contains("Color", 99)) ? display.getInt("Color") : 0xFFFFFF;
-        //    }
-        //    return 0xFFFFFF; // No tint for other layers
-        //}, ModItems.SCINTILLA.get());
-    }
-
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
     @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents
@@ -131,6 +116,15 @@ public class ScintillaMod
         @SubscribeEvent
         public static void registerModelLoaders(ModelEvent.RegisterGeometryLoaders event) {
             event.register("scintilla_model", new ScintillaModelLoader());
+        }
+
+        @SubscribeEvent
+        public static void registerItemColors(RegisterColorHandlersEvent.@NotNull Item event)
+        {
+            event.register((itemStack, i) -> i > 0 ? -1 :
+                    ((DyeableLeatherItem) itemStack.getItem()).getColor(itemStack), ModItems.SHATTERGLASS.get());
+            event.register((itemStack, i) -> i > 0 ? -1 :
+                    ((DyeableLeatherItem) itemStack.getItem()).getColor(itemStack), ModItems.SCINTILLA.get());
         }
     }
 }

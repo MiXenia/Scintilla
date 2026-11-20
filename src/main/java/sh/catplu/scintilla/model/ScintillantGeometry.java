@@ -99,6 +99,7 @@ public class ScintillantGeometry implements IUnbakedGeometry<ScintillantGeometry
         private final ItemOverrides overrides;
         private final ModelBaker modelBaker;
         private final ItemTransforms transforms;
+        private final List<BakedQuad> quads;
 
         public LayeredItemModel(ImmutableList<Material> materials, Function<Material, TextureAtlasSprite> spriteGetter, ModelState modelState, ItemOverrides overrides, ModelBaker modelBaker, ItemTransforms transforms) {
             this.materials = materials;
@@ -107,34 +108,30 @@ public class ScintillantGeometry implements IUnbakedGeometry<ScintillantGeometry
             this.overrides = new ScintillantOverrider(this); // Pass self to overrider
             this.modelBaker = modelBaker;
             this.transforms = transforms;
+            ImmutableList.Builder<BakedQuad> builder = ImmutableList.builder();
+            for (int i = 0; i < materials.size(); ++i) {
+                Material mat = materials.get(i);
+                //System.out.println("MEOWMEOWMEOW Loading texture: " + mat.texture());
+                TextureAtlasSprite sprite = spriteGetter.apply(mat);
+
+                // If you have ForgeFaceData, pass it here, otherwise use ForgeFaceData.DEFAULT
+                List<BlockElement> elements = UnbakedGeometryHelper.createUnbakedItemElements(i, sprite.contents(), ForgeFaceData.DEFAULT);
+
+                // The spriteGetter for bakeElements expects a String (texture name), so wrap your Material lookup
+                builder.addAll(UnbakedGeometryHelper.bakeElements(
+                        elements,
+                        name -> sprite,
+                        modelState,
+                        mat.texture()
+                ));
+            }
+            this.quads = builder.build();
         }
 
         @Override
         public List<BakedQuad> getQuads(@Nullable BlockState state, @Nullable net.minecraft.core.Direction side, net.minecraft.util.RandomSource rand) {
             if (side != null) return Collections.emptyList();
-
-            ImmutableList.Builder<BakedQuad> quads = ImmutableList.builder();
-
-            for (int i = 0; i < materials.size(); ++i) {
-                Material mat = materials.get(i);
-                //System.out.println("MEOWMEOWMEOW Loading texture: " + mat.texture());
-                TextureAtlasSprite sprite = spriteGetter.apply(mat);
-                SpriteContents contents = sprite.contents();
-
-                // If you have ForgeFaceData, pass it here, otherwise use ForgeFaceData.DEFAULT
-                List<BlockElement> elements = UnbakedGeometryHelper.createUnbakedItemElements(i, contents, ForgeFaceData.DEFAULT);
-
-                // The spriteGetter for bakeElements expects a String (texture name), so wrap your Material lookup
-                List<BakedQuad> baked = UnbakedGeometryHelper.bakeElements(
-                        elements,
-                        name -> sprite,
-                        modelState,
-                        mat.texture()
-                );
-                quads.addAll(baked);
-            }
-
-            return quads.build();
+            return quads;
         }
 
         @Override

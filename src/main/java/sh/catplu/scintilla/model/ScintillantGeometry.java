@@ -41,55 +41,31 @@ public class ScintillantGeometry implements IUnbakedGeometry<ScintillantGeometry
 
     @Override
     public BakedModel bake(IGeometryBakingContext context, ModelBaker baker, Function<Material, TextureAtlasSprite> spriteGetter, ModelState modelState, ItemOverrides overrides, ResourceLocation modelLocation) {
-        // Compose the texture paths
-        ResourceLocation layer0 = new ResourceLocation("scintilla","item/s_" + bs + "_shatterglass");
-        ResourceLocation layer1 = new ResourceLocation("scintilla","item/l_" + bs + "_" + dl);
-        ResourceLocation layer2 = new ResourceLocation("scintilla","item/r_" + bs + "_" + dr);
-        ResourceLocation layer3 = new ResourceLocation("scintilla","item/b_" + bs + "_" + bm);
-
-        ImmutableList<Material> materials = ImmutableList.of(
-                new Material(InventoryMenu.BLOCK_ATLAS, layer0),
-                new Material(InventoryMenu.BLOCK_ATLAS, layer1),
-                new Material(InventoryMenu.BLOCK_ATLAS, layer2),
-                new Material(InventoryMenu.BLOCK_ATLAS, layer3)
-        );
-
-        // Build a layered item model (like vanilla's ItemLayerModel)
-        BakedModel model = bakeModel(bs, bm, dl, dr, baker, modelState, overrides, spriteGetter, context.getTransforms());
-        // Populate the cache for the default key
-        String cacheKey = "c_" + bs + "_" + bm + "_" + dl + "_" + dr;
-        MODEL_CACHE.put(cacheKey, model);
+        MODEL_CACHE.clear();
+        BakedModel model = bakeModel(bs, bm, dl, dr, modelState, spriteGetter, context.getTransforms());
+        MODEL_CACHE.put("c_" + bs + "_" + bm + "_" + dl + "_" + dr, model);
         return model;
     }
 
     public static BakedModel bakeModel(
         String bs, String bm, String dl, String dr,
-        ModelBaker baker, ModelState state, ItemOverrides overrides,
+        ModelState state,
         Function<Material, TextureAtlasSprite> spriteGetter,
         ItemTransforms transforms
     ) {
-        ResourceLocation layer0 = new ResourceLocation("scintilla","item/s_" + bs + "_shatterglass");
-        ResourceLocation layer1 = new ResourceLocation("scintilla","item/l_" + bs + "_" + dl);
-        ResourceLocation layer2 = new ResourceLocation("scintilla","item/r_" + bs + "_" + dr);
-        ResourceLocation layer3 = new ResourceLocation("scintilla","item/b_" + bs + "_" + bm);
 
         ImmutableList<Material> materials = ImmutableList.of(
-            new Material(net.minecraft.world.inventory.InventoryMenu.BLOCK_ATLAS, layer0),
-            new Material(net.minecraft.world.inventory.InventoryMenu.BLOCK_ATLAS, layer1),
-            new Material(net.minecraft.world.inventory.InventoryMenu.BLOCK_ATLAS, layer2),
-            new Material(net.minecraft.world.inventory.InventoryMenu.BLOCK_ATLAS, layer3)
+            new Material(InventoryMenu.BLOCK_ATLAS, new ResourceLocation("scintilla","item/s_" + bs + "_shatterglass")),
+            new Material(InventoryMenu.BLOCK_ATLAS, new ResourceLocation("scintilla","item/l_" + bs + "_" + dl)),
+            new Material(InventoryMenu.BLOCK_ATLAS, new ResourceLocation("scintilla","item/r_" + bs + "_" + dr)),
+            new Material(InventoryMenu.BLOCK_ATLAS, new ResourceLocation("scintilla","item/b_" + bs + "_" + bm))
         );
 
-        return new LayeredItemModel(materials, spriteGetter, state, overrides, baker, transforms);
+        return new LayeredItemModel(materials, spriteGetter, state, transforms);
     }
 
     // Add a static cache and a getOrBake method:
     static final Map<String, BakedModel> MODEL_CACHE = new ConcurrentHashMap<>();
-
-    //public static BakedModel getOrBake(String bs, String bm, String dl, String dr, ModelBaker baker, ModelState state, ItemOverrides overrides) {
-    //    String cacheKey = "c_" + bs + "_" + bm + "_" + dl + "_" + dr;
-    //    return MODEL_CACHE.computeIfAbsent(cacheKey, k -> bakeModel(bs, bm, dl, dr, baker, state, overrides, spriteGetter));
-    //}
 
     // Simple layered item model implementation
     public static class LayeredItemModel implements BakedModel {
@@ -97,16 +73,14 @@ public class ScintillantGeometry implements IUnbakedGeometry<ScintillantGeometry
         private final Function<Material, TextureAtlasSprite> spriteGetter;
         private final ModelState modelState;
         private final ItemOverrides overrides;
-        private final ModelBaker modelBaker;
         private final ItemTransforms transforms;
         private final List<BakedQuad> quads;
 
-        public LayeredItemModel(ImmutableList<Material> materials, Function<Material, TextureAtlasSprite> spriteGetter, ModelState modelState, ItemOverrides overrides, ModelBaker modelBaker, ItemTransforms transforms) {
+        public LayeredItemModel(ImmutableList<Material> materials, Function<Material, TextureAtlasSprite> spriteGetter, ModelState modelState, ItemTransforms transforms) {
             this.materials = materials;
             this.spriteGetter = spriteGetter;
             this.modelState = modelState;
             this.overrides = new ScintillantOverrider(this); // Pass self to overrider
-            this.modelBaker = modelBaker;
             this.transforms = transforms;
             ImmutableList.Builder<BakedQuad> builder = ImmutableList.builder();
             for (int i = 0; i < materials.size(); ++i) {
@@ -157,7 +131,6 @@ public class ScintillantGeometry implements IUnbakedGeometry<ScintillantGeometry
         public ItemOverrides getOverrides() { return overrides; }
 
         // Add getters for modelBaker and modelState
-        public ModelBaker getModelBaker() { return modelBaker; }
         public ModelState getModelState() { return modelState; }
         public Function<Material, TextureAtlasSprite> getSpriteGetter() { return spriteGetter; }
     }

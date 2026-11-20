@@ -33,13 +33,13 @@ public class ScintillaItem extends Item implements DyeableLeatherItem {
             float       saturation = nbt.getFloat("sv");
             return new FoodProperties.Builder()
                     .nutrition(hunger)
-                    .saturationMod(saturation/hunger)
+                    .saturationMod(hunger > 0 ? saturation / (2f * hunger) : 0f)
                     .alwaysEat()
                     .build();
         } else {
             return new FoodProperties.Builder()
                     .nutrition(2)
-                    .saturationMod(0.4f/2)
+                    .saturationMod(0.4f/ (2f * 2))
                     .alwaysEat()
                     .build();
         }

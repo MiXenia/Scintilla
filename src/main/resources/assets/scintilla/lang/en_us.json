@@ -72,6 +72,9 @@
   "item.scintilla.vial_end_bottle" :        "Final Vial",
 
   "block.scintilla.frailily": "Preserved Frailily",
+  "tooltip.scintilla.frailily_lore.1": "Come visit soon!",
+  "tooltip.scintilla.frailily_lore.2": "You always have a home here.",
+  "tooltip.scintilla.frailily_lore.3": "From Noxlyte, with love.",
   "block.scintilla.potted_frailily": "Imagination Manifest, Preserved and Potted",
 
   "creativetab.scintilla_tab":      "Scintilla",

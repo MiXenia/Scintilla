@@ -37,7 +37,6 @@ public class ColorTransfer extends ShapedRecipe {
     private final ItemStack               pResult;
     private final boolean                 pShowNotification;
     final         int                     colorSourceSlot;
-    private       int                     matchedColorSourceSlot = -1;
 
     public ColorTransfer(ResourceLocation pId, String pGroup, CraftingBookCategory pCategory, int pWidth, int pHeight, NonNullList<Ingredient> pRecipeItems, ItemStack pResult, boolean pShowNotification, int colorSourceSlot) {
         super(pId, pGroup, pCategory, pWidth, pHeight, pRecipeItems, pResult, pShowNotification);
@@ -51,24 +50,23 @@ public class ColorTransfer extends ShapedRecipe {
         this.colorSourceSlot   = colorSourceSlot;
     }
 
-    @Override
-    public boolean matches(CraftingContainer pInv, Level pLevel) {
-        if (pLevel.isClientSide()) {
-            return false;
-        }
+    private int findColorSlot(CraftingContainer pInv) {
         for (int i = 0; i <= pInv.getWidth() - this.pWidth; ++i) {
-            for (int j = 0; j <= pInv.getHeight() - this.pHeight; ++j) {
-                int slot = getColorSlot(i, j, pInv.getWidth(), pInv.getHeight());
+            for (int j = 0; j <= pInv. getHeight() - this.pHeight; ++j) {
                 if (this.matches(pInv, i, j, false)) {
+                    int slot = getColorSlot(i,j,pInv.getWidth(), pInv.getHeight());
                     if (pInv.getItem(slot).hasTag()) {
-                        this.matchedColorSourceSlot = slot;
-                        return true;
+                        return slot;
                     }
                 }
             }
         }
-        this.matchedColorSourceSlot = -1;
-        return false;
+        return -1;
+    }
+
+    @Override
+    public boolean matches(CraftingContainer pInv, Level pLevel) {
+        return findColorSlot(pInv) != -1;
     }
 
     private int getColorSlot(int i, int j, int width, int height) {
@@ -101,10 +99,10 @@ public class ColorTransfer extends ShapedRecipe {
 
     @Override
     public ItemStack assemble(CraftingContainer pContainer, RegistryAccess pRegistryAccess) {
-        ItemStack donor  = pContainer.getItem(this.matchedColorSourceSlot);
-        ItemStack source = this.pResult.copy();
-        ItemStack output = NBTCopyUtil.mergeNbtPreservingExisting(donor, source);
-        return output;
+        int slot = findColorSlot(pContainer);
+        if (slot == -1) return ItemStack.EMPTY;
+        ItemStack donor = pContainer.getItem(slot);
+        return NBTCopyUtil.mergeNbtPreservingExisting(donor, this.pResult.copy());
     }
 
     static Map<String, Ingredient> keyFromJson(JsonObject pKeyEntry) {
